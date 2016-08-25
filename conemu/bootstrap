@@ -1,0 +1,5 @@
+if [[ "$OSTYPE" != "windows" ]]; then
+  return
+fi
+
+symlink "$topic/ConEmu.xml" "$(cygpath --unix "$APPDATA")/ConEmu.xml"
