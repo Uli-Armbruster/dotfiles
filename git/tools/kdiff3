@@ -5,7 +5,7 @@
 script_path="${0%/*}"
 . "$script_path/diff-and-merge-support"
 
-tool="$(tool_path '/c/Tools/KDiff3/kdiff3.exe' \
+tool="$(tool_path '~/.dotfiles/tools/KDiff3/kdiff3.exe' \
                   '/mnt/c/Tools/KDiff3/kdiff3.exe' \
                   'kdiff3' \
                   '/Applications/kdiff3.app/Contents/MacOS/kdiff3')" || exit $?
