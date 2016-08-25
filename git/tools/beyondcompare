@@ -5,7 +5,7 @@
 script_path="${0%/*}"
 . "$script_path/diff-and-merge-support"
 
-tool="$(tool_path '/c/Tools/Beyond Compare/BComp.exe' \
+tool="$(tool_path '/C/Program Files/Beyond Compare/v4/BComp.exe' \
                   '/mnt/c/Tools/Beyond Compare/BComp.exe' \
                   'bcompare' \
                   '/Applications/Beyond Compare.app/Contents/MacOS/bcomp')" || exit $?
