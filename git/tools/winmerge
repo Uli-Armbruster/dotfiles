@@ -10,7 +10,7 @@
 script_path="${0%/*}"
 . "$script_path/diff-and-merge-support"
 
-tool="$(tool_path '/c/Tools/WinMerge/WinMergeU.exe')" || exit $?
+tool="$HOME/.dotfiles/tools/KDiff3/kdiff3.exe" || exit $?
 
 op="${1?Need operation (diff or merge) as the first argument}"
 shift
