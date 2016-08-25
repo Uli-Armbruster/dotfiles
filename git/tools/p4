@@ -5,7 +5,7 @@
 script_path="${0%/*}"
 . "$script_path/diff-and-merge-support"
 
-tool="$(tool_path '/c/Tools/P4Merge/p4merge.exe' \
+tool="$(tool_path "$HOME/.dotfiles/tools/P4Merg/p4merge.exe" \
                   '/mnt/c/Tools/P4Merge/p4merge.exe' \
                   'p4merge' \
                   '/Applications/p4merge.app/Contents/MacOS/p4merge')" || exit $?
