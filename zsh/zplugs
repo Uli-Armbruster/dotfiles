@@ -95,6 +95,9 @@ zplug 'kamranahmedse/git-standup', \
       if:"(($+commands[git]))", \
       as:command, \
       use:'git-standup'
+zplug 'co-IT/git-prefix', \
+      if:"(($+commands[git]))", \
+      use:'source/git-prefix.sh'
 
 # Plugins related to docker.
 zplug 'plugins/docker', \
