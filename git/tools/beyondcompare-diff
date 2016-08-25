@@ -6,7 +6,7 @@
 script_path=${0%/*}
 source "$script_path/diff-and-merge-support"
 
-difftool="/c/Tools/Beyond Compare/BCompare.exe"
+difftool="/C/Program Files/Beyond Compare/v4/BCompare.exe"
 get_diff_args "$1" "$2"
 
 "$difftool" /solo /readonly "$old" "$new" "/title1=$old_title" "/title2=$new_title"

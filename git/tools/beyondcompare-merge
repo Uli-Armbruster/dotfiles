@@ -6,7 +6,7 @@
 script_path=${0%/*}
 source "$script_path/diff-and-merge-support"
 
-mergetool="/c/Tools/Beyond Compare/BCompare.exe"
+mergetool="/C/Program Files/Beyond Compare/v4/BCompare.exe"
 get_merge_args "$1" "$2" "$3" "$4"
 
 "$mergetool" /solo /automerge /reviewconflicts "$local" "$remote" "$base" "$result" /lefttitle="Mine" /centertitle="Base" /righttitle="Theirs" /outputtitle="Merged: $4"

@@ -6,7 +6,7 @@
 script_path=${0%/*}
 source "$script_path/diff-and-merge-support"
 
-difftool="$script_path/../../tools/DiffMerge/diffmerge.exe"
+difftool="$script_path/../../tools/KDiff3/kdiff3.exe"
 get_diff_args "$1" "$2"
 
-"$difftool" "$old" "$new" "--title1=$old_title" "--title2=$new_title"
+"$difftool" "$old" "$new"
