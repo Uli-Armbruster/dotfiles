@@ -1,38 +1,43 @@
                             Release Notes for
                   P4Merge, the Perforce Visual Merge Tool
-                            Version 2011.1
+                            Version 2015.2
 
 Introduction
 
-Supported Platforms
-        
-        * Windows XP, Vista, 7, 2003, 2008 Intel (x86, x86_64)
-        * Linux 2.6 Intel (x86, x86_64)
-        * Mac OS X 10.4, 10.5, 10.6 (PPC/x86)
-        * Solaris 10 Intel (x86)
-        * Solaris 10 SPARC (SPARC)
-
-
-        P4Merge 2011.1 works with a Perforce Server at Release 
-        2006.2 or higher and can be run standalone from the command line.
-
-        Documentation
-
-        P4Merge Release 2011.1 is documented in help files that are 
-        embedded within the program.
-
-        User Audience
-
         P4Merge is an end-user application designed for software 
-        developers. P4Merge can be run stand-alone and does not require a 
-        Perforce Server or P4V.
+        developers. P4Merge can run standalone and does not require a 
+        Perforce Server or P4V. P4Merge is documented in help files 
+        that are embedded within the program.
 
-        Installation
+Supported Platforms
+
+        Windows Vista SP1, 7, 8, 2008 Intel (x86, x86_64)
+        Mac OS X 10.8, 10.9, 10.10 (x86_64)
+        Linux (x86, x86_64)
+            RHEL 6.0+
+            CentOS 6.0+
+            Ubuntu 11.04+
+            Fedora 17+
+            openSUSE 11.4+, 12.3+
+
+        Notes:
+            As of our 2014.2 release, P4Merge is now built with release 5.x of
+        the Qt framework. Due to Qt 5.x dependencies on the XCB (X protocol 
+        C-language Binding) library, P4Merge for Linux runs only on Linux
+        distributions that are approximately two years old. At this time, we do not
+        anticipate similar restrictions on Windows or Mac OS X.
+
+            Because of the Linux platform restrictions imposed by the Qt framework,
+        we are willing to backport major fixes into P4V 2014.1 on Linux only
+        for an extended period.
+
+
+Installation
 
         Windows
 
         From the download page, download and run the P4V 
-        installer.  The P4V installer includes P4Merge.
+        installer. The P4V installer includes P4Merge.
 
         Mac OS X
 
@@ -44,7 +49,7 @@ Supported Platforms
 
         <path to p4merge>/p4merge.app/Contents/Resources/launchp4merge <args>
 
-        NOTE: The launchp4merge command-line binary must be run from the
+        Note: The launchp4merge command-line binary must be run from the
         above location. You can create a link, alias or shell script that
         points to this location.
 
@@ -63,1192 +68,1424 @@ Supported Platforms
 
         p4merge <args>
 
-        note: all files passed to P4Merge on the command line must be
-              existing files or an error will occur citing the non-existing
-              file as invalid.
+        Note: All files passed to P4Merge on the command line must be
+        existing files or an error will occur citing the non-existing
+        file as invalid.
 
+Interoperating With Previous Releases
 
-        Compatibility of Client and Server Versions
+        You can use P4Merge with any Perforce Server at Release 2011.1 or
+        higher. The functionality available in P4Merge depends on the server
+        version as well as the P4Merge version.
 
-            Unless stated otherwise you can operate any release 
-            of a Perforce client application with any release of 
-            a Perforce server, but any functionality that is new 
-            in 2010.2 requires you to upgrade the client 
-            application and possibly the server as indicated by 
-            asterisks in the descriptions below.
+        In the following change descriptions, the asterisks indicate
+        whether you must upgrade P4Merge or the Perforce Server as follows:
 
-            * -- requires new p4merge client program
-            ** -- requires new p4d server program
+        ** -- requires new p4d Perforce Server program
+
+Third Party Packages
+
+        OpenSSL License
+        ---------------
+
+        Copyright (c) 1998-2011 The OpenSSL Project.  All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions
+        are met:
+        
+        1. Redistributions of source code must retain the above copyright
+           notice, this list of conditions and the following disclaimer.
+        
+        2. Redistributions in binary form must reproduce the above copyright
+           notice, this list of conditions and the following disclaimer in
+           the documentation and/or other materials provided with the
+           distribution.
+        
+        3. All advertising materials mentioning features or use of this
+           software must display the following acknowledgment:
+           "This product includes software developed by the OpenSSL Project
+           for use in the OpenSSL Toolkit. (http://www.openssl.org/)"
+        
+        4. The names "OpenSSL Toolkit" and "OpenSSL Project" must not be used to
+           endorse or promote products derived from this software without
+           prior written permission. For written permission, please contact
+           openssl-core@openssl.org.
+        
+        5. Products derived from this software may not be called "OpenSSL"
+           nor may "OpenSSL" appear in their names without prior written
+           permission of the OpenSSL Project.
+        
+        6. Redistributions of any form whatsoever must retain the following
+           acknowledgment:
+           "This product includes software developed by the OpenSSL Project
+           for use in the OpenSSL Toolkit (http://www.openssl.org/)"
+        
+        THIS SOFTWARE IS PROVIDED BY THE OpenSSL PROJECT ``AS IS'' AND ANY
+        EXPRESSED OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR
+        PURPOSE ARE DISCLAIMED.  IN NO EVENT SHALL THE OpenSSL PROJECT OR
+        ITS CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+        SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+        NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT,
+        STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+        ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED
+        OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+        This product includes cryptographic software written by Eric Young
+        (eay@cryptsoft.com).  This product includes software written by Tim
+        Hudson (tjh@cryptsoft.com).
+        
+        Original SSLeay License
+        -----------------------
+
+        Copyright (C) 1995-1998 Eric Young (eay@cryptsoft.com)
+        All rights reserved.
+        
+        This package is an SSL implementation written
+        by Eric Young (eay@cryptsoft.com).
+        The implementation was written so as to conform with Netscapes SSL.
+        
+        This library is free for commercial and non-commercial use as long as
+        the following conditions are adhered to.  The following conditions
+        apply to all code found in this distribution, be it the RC4, RSA,
+        lhash, DES, etc., code; not just the SSL code.  The SSL documentation
+        included with this distribution is covered by the same copyright terms
+        except that the holder is Tim Hudson (tjh@cryptsoft.com).
+        
+        Copyright remains Eric Young's, and as such any Copyright notices in
+        the code are not to be removed.
+        If this package is used in a product, Eric Young should be given attribution
+        as the author of the parts of the library used.
+        This can be in the form of a textual message at program startup or
+        in documentation (online or textual) provided with the package.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions
+        are met:
+        1. Redistributions of source code must retain the copyright
+           notice, this list of conditions and the following disclaimer.
+        2. Redistributions in binary form must reproduce the above copyright
+           notice, this list of conditions and the following disclaimer in the
+           documentation and/or other materials provided with the distribution.
+        3. All advertising materials mentioning features or use of this software
+           must display the following acknowledgement:
+           "This product includes cryptographic software written by
+           Eric Young (eay@cryptsoft.com)"
+           The word 'cryptographic' can be left out if the routines from the library
+           being used are not cryptographic related  :-) .
+        4. If you include any Windows specific code (or a derivative thereof) from
+           the apps directory (application code) you must include an acknowledgement:
+           "This product includes software written by Tim Hudson (tjh@cryptsoft.com)"
+        
+        THIS SOFTWARE IS PROVIDED BY ERIC YOUNG ``AS IS'' AND
+        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+        IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+        ARE DISCLAIMED.  IN NO EVENT SHALL THE AUTHOR OR CONTRIBUTORS BE LIABLE
+        FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL
+        DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS
+        OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION)
+        HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT
+        LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY
+        OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF
+        SUCH DAMAGE.
+        
+        The licence and distribution terms for any publicly available version or
+        derivative of this code cannot be changed.  i.e. this code cannot simply be
+        copied and put under another distribution licence
+        [including the GNU Public Licence.]
+
 
 --------------------------------------------------------------------------
+Known Limitations
 
+        On windows Japanese systems use code page 932. CP932 is Microsoft's extended
+        version of ShiftJis; it also includes the NEC special characters. When using 
+        ShiftJis on Windows, you have to instruct Qt 4.8.+ to use CP932 and the 
+        extension, instead of plain ShiftJis, to avoid mojibake. You need to set the 
+        following environment variable:
+             UNICODEMAP_JP=cp932,nec-vdc
+        Then when P4V or P4Merge runs, it will use the modified ShiftJis (CP932) 
+        implementation, and apply the extension to recognize NEC special characters
+        when encoding/decoding characters.
+
+
+--------------------------------------------------------------------------
 Known Image Diff Problems
 
-      (Bug #40137) 
-      The image diff highlight feature is a very resource intensive
-      operation since it compares every pixel between the images.
-      Depending on the user's machine resources, they could experience
-      a slowdown and/or hang if the highlight feature is used in very
-      large images or the machine used has limited resources.
+    Bug #40137
+        The image diff highlight feature is a very resource intensive
+        operation since it compares every pixel between the images.
+        Depending on the user's machine resources, they could experience
+        a slowdown and/or hang if the highlight feature is used in very
+        large images or the machine used has limited resources.
 
-      (Bug #29477) 
-      When diffing 48-bit color .TIFF files (16 bits for each channel
-      r/g/b), the image depth is reported to be 32 bits.
+    Bug #29477
+        When diffing 48-bit color .TIFF files (16 bits for each channel
+        r/g/b), the image depth is reported to be 32 bits.
 
-      (Bug #29587) 
-      When diffing .GIF files, the image depth is always reported to be
-      32 bits.
+    Bug #29587
+        When diffing .GIF files, the image depth is always reported to be
+        32 bits.
 
-      (Bug #29497) 
-      Only RGB formatted files are supported in the image diff tool. If a
-      CMYK formatted file is diffed, its format is reported as RGB.
+    Bug #29497
+        Only RGB formatted files are supported in the image diff tool. If a
+        CMYK formatted file is diffed, its format is reported as RGB.
 
----------------------------------------------------------------------------
-
-Minor new functionality in 2011.1
-
-        #333992 (Bug #47083) *
-            Added support for Chinese language character encodings:
-            cp936 - Windows Codepage 936 (Simplified Chinese GBK)
-            cp950 - Windows Codepage 950 (Traditional Chinese Big5)
-
-        #324100, #332117 (Bug #36198) *
-            When additional languages are available, users can choose
-            which language to use for the application menus, labels and
-            dialogs. This is set in the Preferences dialog.
-
-        #322256 (Bug #46050) *
-            Added support for diffing images of the following formats:
-            TGA, Photoshop, 3DSMax, and Maya. Maya image diffing requires
-            Maya to be installed.
-
----------------------------------------------------------------------------
-
-Bugs fixed in 2011.1
-
-        #348727 (Bug #48250) *
-            P4Merge Help menu no longer disabled on Mac OS X 10.5.
-
----------------------------------------------------------------------------
-
-Minor new functionality in 2010.2
-
-        #273790 (Bug #26931) *
-            A new preference has been added to visualize white space.
-            The option is called "Show tabs and spaces". It shows
-            arrows for tabs and dots for spaces.
-
-        #266761 (Bug #35304) *
-            A new preference has been added to insert spaces instead of
-            a tab character in the merge edit diff pane and the diff
-            edit diff pane.
-
----------------------------------------------------------------------------
-
-Bugs fixed in 2010.2
-
-        #278936 (Bug #42224) *
-            Warning dialog about replacing contents of the merge result
-            when clicking on base, left or right icons now contains missing
-            "No" button.
-
-        #274246 (Bug #41852) *
-            Passing diff option flags (-db/dw/dl/da) on the command line
-            works correctly again.
-
-        #240804 (Bug #38217) *
-            An empty file is no longer saved if some characters can not
-            be translated by the chosen character encoding.
-
----------------------------------------------------------------------------
-
-Minor new functionality in 2010.1
-
-        #236666 (Bug #21199) *
-            The file size warning dialog is displayed if the combined
-            size of the files exceeds approximately 10M, increased from
-            2M.
-
-        #236458 (Bug #20885, #21199, #24303) *
-            New busy bar dialog displayed during long load operations.
-
-        #236458 (Bug #24303) *
-            Removed limit on the size of the files that can be merged or diffed.
-            Depending on the sizes of the files and the client computer's resources,
-            P4Merge might become unresponsive during startup.
-
----------------------------------------------------------------------------
-
-Bugs fixed in 2010.1
-
-        #264660 (Bug #40758) *
-            Merge edit buttons now align correctly to the diffs when using
-            certain application fonts on Unix. 
-
-        #261650 (Bug #39269, #39995) *
-            P4Merge is now drawing diffs correctly for all fonts on Unix. 
-
-        #254805 (Bug #39269) *
-            P4Merge no longer selects an arbitrary font on Unix when the
-            font that is initially defaulted to does not exist.
-
-        #240987 (Bug #38506) *
-            Current diff/conflict now centers correctly when switching
-            between Single and Double Diff Layout.
-
-        #238489 (Bug #36906) *
-            Save menu no longer disabled after changing character encoding
-            or comparison method.
-
-        #238489 (Bug #36338) *
-            If files being diffed are deleted after P4Merge is
-            launched, menus that require both files are now
-            disabled.
-
-        #238037 (Bug #37950) *
-            When switching between single and double pane or edit diff
-            mode, the document is scrolled to the correct location.
-
-        #237893 (Bug #25435, #28928) *
-            When there is only one diff or conflict, the next and previous
-            actions will take you to that diff/conflict.
-
-        #236777 (Bug #20647) *
-            When using P4Merge standalone, leading and trailing spaces are
-            ignored when validating files.
-
----------------------------------------------------------------------------
-
-Minor new functionality in 2009.2
-
-        #216271 (Bug #35729) *
-            UTF-32 character encoding in now supported.
-
----------------------------------------------------------------------------
-
-Bugs fixed in 2009.2
-
-        #226528 (Bug #36842) *
-            "Save As..." menu is now correctly enabled when merging
-            files.
-
-        #222913 (Bug #36438) *
-            The Paste command has the correct key shortcut in context
-            menus.
-
-        #222534 (Bug #31455) *
-            Contents of the merge edit pane are correctly replaced when
-            selecting base, yours or theirs by clicking on the merge
-            diagram.
-
-        #219519 (Bug #35901, #34890) *
-            P4Merge no longer crashes when diffing/merging certain files
-            with inline differences turned on and inline differences are
-            no longer drawn incorrectly when refreshing.
-
-        #218908 (Bug #35181) *
-            Diagram buttons at the top of the P4Merge window in merge mode
-            are clickable again.
-
-        #218871 (Bug #35889) *
-            Command line output for help, version and errors can now
-            be translated.
 
 --------------------------------------------------------------------------
+Bugs fixed in 2015.1/1233444
 
+    #1073713 (Bug #42405)
+        Diff algorithm tunables are now taken into account when set in a client-side 
+        P4ENVIRO file.
+
+---------------------------------------------------------------------------
+Bugs fixed in 2014.3
+
+    #993605 (Bug #64959)
+        P4Merge now correctly handles files with a Byte Order Mark (BOM).
+        This solves the problem where two BOMs where being saved to the
+        merged result file.
+
+    #989338 (Bug #76690)
+        When invoking the command line help (p4merge -h), the window now properly
+        displays the information.
+
+--------------------------------------------------------------------------    
+Bugs fixed in Patch 1 since 2014.2/951414 (GA)
+
+    #958974 (Bug #75870)
+        Fixed character mangling when connected to a non-Unicode server. The characters
+        no longer appear as black diamonds with question marks. This manifested in
+        multiple places, and in the case of merging, could cause data loss as the saved
+        result of a merge could have corrupted characters.
+
+--------------------------------------------------------------------------
+Major new functionality in 2014.1
+
+    #803191 (Bug #71402) **
+        Added support for Greek language when character encoding is set
+        to CP1253 or 8859-7.
+
+    #763401
+        Added a field for the P4Combine web service url to the Preferences
+        dialog so it can be used in standalone mode.
+
+--------------------------------------------------------------------------    
+Bugs fixed in Patch 1 since 2013.4/760166 (GA)
+
+    #767730 (Bug #62467)
+        Fixed problem with merge pane buttons incorrectly showing up
+        and, if clicked, possibly causing the application to crash. 
+        These buttons should not be rendered anymore.
+
+---------------------------------------------------------------------------
+Major new functionality in 2013.4
+
+    #723901
+        A rich comparison of Microsoft Word (.docx) files is available
+        from P4Merge through the P4Combine Web Service. After the Perforce 
+        administrator sets the "P4.Combine.URL" server property to the
+        P4Combine Web Service URL, P4Merge will compare .docx files.
+
+        The P4Combine Web Service URL can also be set by a command-line
+        argument as follows:
+        -url <P4Combine Web Service URL>
+        A second argument can be used to determine the type of compare:
+            -ct <compare type>
+                'compare-parent-child'
+                'compare-siblings'
+        Compare "Parent-Child" is used to show how a file has changed since
+        its most recent state.
+        Compare "Siblings" can be used  when there is no direct 
+        relationship between the files being compared.
+
+        P4Combine is installed as part of a Perforce Commons installation.
+        For information on how to install and setup the P4Combine Web Service
+        see the Commons Administrator's Guide:
+        http://www.perforce.com/perforce/doc.current/manuals/commons-admin/index.html
+
+---------------------------------------------------------------------------
+Bugs fixed in 2013.4
+
+    #730435 (Bug #66299)
+        Double-byte whitespace characters in filenames now work properly.
+
+    #714810 (Bug #24515)
+        Merge will no longer randomly add a newline to the end of merged
+        files where no newline was present in either files.
+
+
+-------------------------------------------------------------------------------
+Bugs fixed in Patch 1 since 2013.2/661179 (GA)
+
+    #673499 (Bug #67250)
+        Fixed preferences not getting saved properly.
+
+
+---------------------------------------------------------------------------
+Bugs fixed in 2012.2
+
+    #489742 (Bug #57364)
+        SVG files are now recognized as text files, not binary.
+
+
+---------------------------------------------------------------------------
+Minor new functionality in 2012.1
+
+    #407688 (Bug #17830)
+        When saving the merged results, users will now get a dialog
+        warning them if they have unresolved conflicts.
+
+
+---------------------------------------------------------------------------
+Minor new functionality in 2011.1
+
+    #333992 (Bug #47083)
+        Added support for Chinese language character encodings:
+        cp936 - Windows Codepage 936 (Simplified Chinese GBK)
+        cp950 - Windows Codepage 950 (Traditional Chinese Big5)
+
+    #324100, #332117 (Bug #36198)
+        When additional languages are available, users can choose
+        which language to use for the application menus, labels and
+        dialogs. This is set in the Preferences dialog.
+
+    #322256 (Bug #46050)
+        Added support for diffing images of the following formats:
+        TGA, Photoshop, 3DSMax, and Maya. Maya image diffing requires
+        Maya to be installed.
+
+
+---------------------------------------------------------------------------
+Bugs fixed in 2011.1
+
+    #348727 (Bug #48250)
+        P4Merge Help menu no longer disabled on Mac OS X 10.5.
+
+
+---------------------------------------------------------------------------
+Minor new functionality in 2010.2
+
+    #273790 (Bug #26931)
+        A new preference has been added to visualize white space.
+        The option is called "Show tabs and spaces". It shows
+        arrows for tabs and dots for spaces.
+
+    #266761 (Bug #35304)
+        A new preference has been added to insert spaces instead of
+        a tab character in the merge edit diff pane and the diff
+        edit diff pane.
+
+
+---------------------------------------------------------------------------
+Bugs fixed in 2010.2
+
+    #278936 (Bug #42224)
+        Warning dialog about replacing contents of the merge result
+        when clicking on base, left or right icons now contains missing
+        "No" button.
+
+    #274246 (Bug #41852)
+        Passing diff option flags (-db/dw/dl/da) on the command line
+        works correctly again.
+
+    #240804 (Bug #38217)
+        An empty file is no longer saved if some characters can not
+        be translated by the chosen character encoding.
+
+
+---------------------------------------------------------------------------
+Minor new functionality in 2010.1
+
+    #236666 (Bug #21199)
+        The file size warning dialog is displayed if the combined
+        size of the files exceeds approximately 10M, increased from
+        2M.
+
+    #236458 (Bug #20885, #21199, #24303)
+        New busy bar dialog displayed during long load operations.
+
+    #236458 (Bug #24303)
+        Removed limit on the size of the files that can be merged or diffed.
+        Depending on the sizes of the files and the client computer's resources,
+        P4Merge might become unresponsive during startup.
+
+
+---------------------------------------------------------------------------
+Bugs fixed in 2010.1
+
+    #264660 (Bug #40758)
+        Merge edit buttons now align correctly to the diffs when using
+        certain application fonts on Unix. 
+
+    #261650 (Bug #39269, #39995)
+        P4Merge is now drawing diffs correctly for all fonts on Unix. 
+
+    #254805 (Bug #39269)
+        P4Merge no longer selects an arbitrary font on Unix when the
+        font that is initially defaulted to does not exist.
+
+    #240987 (Bug #38506)
+        Current diff/conflict now centers correctly when switching
+        between Single and Double Diff Layout.
+
+    #238489 (Bug #36906)
+        Save menu no longer disabled after changing character encoding
+        or comparison method.
+
+    #238489 (Bug #36338)
+        If files being diffed are deleted after P4Merge is
+        launched, menus that require both files are now
+        disabled.
+
+    #238037 (Bug #37950)
+        When switching between single and double pane or edit diff
+        mode, the document is scrolled to the correct location.
+
+    #237893 (Bug #25435, #28928)
+        When there is only one diff or conflict, the next and previous
+        actions will take you to that diff/conflict.
+
+    #236777 (Bug #20647)
+        When using P4Merge standalone, leading and trailing spaces are
+        ignored when validating files.
+
+
+---------------------------------------------------------------------------
+Minor new functionality in 2009.2
+
+    #216271 (Bug #35729)
+        UTF-32 character encoding in now supported.
+
+
+---------------------------------------------------------------------------
+Bugs fixed in 2009.2
+
+    #226528 (Bug #36842)
+        "Save As..." menu is now correctly enabled when merging
+        files.
+
+    #222913 (Bug #36438)
+        The Paste command has the correct key shortcut in context
+        menus.
+
+    #222534 (Bug #31455)
+        Contents of the merge edit pane are correctly replaced when
+        selecting base, yours or theirs by clicking on the merge
+        diagram.
+
+    #219519 (Bug #35901, #34890)
+        P4Merge no longer crashes when diffing/merging certain files
+        with inline differences turned on and inline differences are
+        no longer drawn incorrectly when refreshing.
+
+    #218908 (Bug #35181)
+        Diagram buttons at the top of the P4Merge window in merge mode
+        are clickable again.
+
+    #218871 (Bug #35889)
+        Command line output for help, version and errors can now
+        be translated.
+
+
+--------------------------------------------------------------------------
 Major new functionality in 2009.1
 
-        #194848 (Bug #17442) *
-            P4Merge now enables you to edit files being diffed,
-            if files are writable.
+    #194848 (Bug #17442)
+        P4Merge now enables you to edit files being diffed,
+        if files are writable.
+
 
 ---------------------------------------------------------------------------
-
 Minor new functionality in 2009.1
 
-        #193530 (Bug #32698) *
-            "Compare as text or image?" dialog optionally remembers your choice.
+    #193530 (Bug #32698)
+        "Compare as text or image?" dialog optionally remembers your choice.
 
-        #179160 (Bug #31824) *
-            Korean language support added with character encoding set to CP949.
+    #179160 (Bug #31824)
+        Korean language support added with character encoding set to CP949.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2009.1
 
-        #205951 (Bug #34532) *
-            Help and Version dialogs now come up correctly when invoked from
-            the command line with -h or -V respectively.
+    #205951 (Bug #34532)
+        Help and Version dialogs now come up correctly when invoked from
+        the command line with -h or -V respectively.
 
-        #200284 (Bug #33992) *
-            Selected text that spans different diff segments is now correctly
-            copied to the clipboard.
+    #200284 (Bug #33992)
+        Selected text that spans different diff segments is now correctly
+        copied to the clipboard.
 
-        #199987, #199997 (Bug #33800) *
-            On Unix platforms, P4Merge now correctly exits when displaying
-            version information, help or errors on the terminal window.
-            User no longer needs CTRL-C to get back to prompt.
+    #199987, #199997 (Bug #33800)
+        On Unix platforms, P4Merge now correctly exits when displaying
+        version information, help or errors on the terminal window.
+        User no longer needs CTRL-C to get back to prompt.
 
-        #199992 (Bug #31781, #33676) *
-            P4Merge no longer hangs on files the contain lots of lines in the same
-            difference segment when inline differences are highlighted
-            in every line.
+    #199992 (Bug #31781, #33676)
+        P4Merge no longer hangs on files the contain lots of lines in the same
+        difference segment when inline differences are highlighted
+        in every line.
 
-        #198812 (Bug #33626) *
-            On Windows Vista, P4Merge now correctly displays the text for long lines 
-            (> 4096 chars/bytes).  
+    #198812 (Bug #33626)
+        On Windows Vista, P4Merge now correctly displays the text for long lines 
+        (> 4096 chars/bytes).  
 
-        #198616 (Bug #33583) *
-            After refreshing, P4Merge now scrolls to the top and selects the
-            first difference segment.
+    #198616 (Bug #33583)
+        After refreshing, P4Merge now scrolls to the top and selects the
+        first difference segment.
 
-        #197834 (Bug #33463) *
-            After changing font size, edit buttons now correctly line up with
-            the text in the merge pane.
+    #197834 (Bug #33463)
+        After changing font size, edit buttons now correctly line up with
+        the text in the merge pane.
 
-        #197811 (Bug #33478) *
-            Inline diffs now redraw correctly after changing the tab spacing.
+    #197811 (Bug #33478)
+        Inline diffs now redraw correctly after changing the tab spacing.
 
-        #197612 (Bug #33421) *
-            On Macintosh, when the selection in the Merge pane changes, P4Merge 
-            now correctly draws all the way to the right.
+    #197612 (Bug #33421)
+        On Macintosh, when the selection in the Merge pane changes, P4Merge 
+        now correctly draws all the way to the right.
 
-        #197154 (Bug #33050) *
-            You can now select the last character of the merge pane.
+    #197154 (Bug #33050)
+        You can now select the last character of the merge pane.
 
-        #196686 (Bug #32849, #32775) *
-            Tab spacing in the merge pane now displays the correct width.
+    #196686 (Bug #32849, #32775)
+        Tab spacing in the merge pane now displays the correct width.
 
-        #193530 (Bug #32768) *
-            P4Merge less frequently mistakes text files for image files and
-            prompts for action when it detects XBM/PBM/PGM/PNM/PPM
-            files.
+    #193530 (Bug #32768)
+        P4Merge less frequently mistakes text files for image files and
+        prompts for action when it detects XBM/PBM/PGM/PNM/PPM
+        files.
 
-        #185117 (Bug #30204) *
-            P4Merge no longer scrolls back to the first diff when you minimize
-            and then maximize the window.
+    #185117 (Bug #30204)
+        P4Merge no longer scrolls back to the first diff when you minimize
+        and then maximize the window.
 
-        #169599 (Bug #31436) *
-            Image diff file size is now displayed in the correct format.
+    #169599 (Bug #31436)
+        Image diff file size is now displayed in the correct format.
+
 
 ---------------------------------------------------------------------------
-
 Major new functionality in 2008.2
 
-        #163385 (Bug #9792) *
-            P4Merge can now display in-line differences, which enables you to 
-            see white-space (tabs and spaces), non alpha-numeric character, and
-            alphanumeric character differences.
+    #163385 (Bug #9792)
+        P4Merge can now display in-line differences, which enables you to 
+        see white-space (tabs and spaces), non alpha-numeric character, and
+        alphanumeric character differences.
+
 
 ---------------------------------------------------------------------------
-
 Minor new functionality in 2008.2
 
-        #164397 (Bug #28112) *
-            The selected pane is now indicated by a border instead of a change
-            to the background color, to make the selected pane more obvious.
+    #164397 (Bug #28112)
+        The selected pane is now indicated by a border instead of a change
+        to the background color, to make the selected pane more obvious.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2008.2
 
-        #175417, #180007 (Bug #31632, #31890) *
-            In-line differences now show correctly when refreshing files.
+    #175417, #180007 (Bug #31632, #31890)
+        In-line differences now show correctly when refreshing files.
 
-        #171610 (Bug #31360) *
-            P4Merge now correctly remembers if the base was visible
-            between sessions.
+    #171610 (Bug #31360)
+        P4Merge now correctly remembers if the base was visible
+        between sessions.
 
-        #168755 (Bug #30923, #30926) *
-            Horizontal and vertical splitter placements are now correctly
-            saved in the preferences.
+    #168755 (Bug #30923, #30926)
+        Horizontal and vertical splitter placements are now correctly
+        saved in the preferences.
 
-        #165220 (Bug #27857) *
-            Edit buttons no longer disappear for a large EOF conflict
-            when scrolled up out of view of the merge pane, then scrolled back
-            down into view.
+    #165220 (Bug #27857)
+        Edit buttons no longer disappear for a large EOF conflict
+        when scrolled up out of view of the merge pane, then scrolled back
+        down into view.
 
-        #165220 (Bug #27506) *
-            Edit buttons no longer change from compressed to expanded when
-            scrolling in a file.
+    #165220 (Bug #27506)
+        Edit buttons no longer change from compressed to expanded when
+        scrolling in a file.
 
-        #163205 (Bug #30484) *
-            P4Merge now automatically treats files that might be XBM X bitmap
-            files as text when comparing against text files, as images when
-            comparing against other image formats, and prompts you to specify
-            format when comparing against another XBM X bitmap file.
+    #163205 (Bug #30484)
+        P4Merge now automatically treats files that might be XBM X bitmap
+        files as text when comparing against text files, as images when
+        comparing against other image formats, and prompts you to specify
+        format when comparing against another XBM X bitmap file.
 
-        #162354 (Bug #29469) *
-            When diffing .TIFF files, the horizontal and vertical image
-            resolution
-            is now reported correctly.
+    #162354 (Bug #29469)
+        When diffing .TIFF files, the horizontal and vertical image
+        resolution
+        is now reported correctly.
 
-        #159523 (Bug #29420) *
-            Warning messages are no longer displayed in the console on UNIX 
-            platforms when the Find dialog is invoked.
+    #159523 (Bug #29420)
+        Warning messages are no longer displayed in the console on UNIX 
+        platforms when the Find dialog is invoked.
 
-        #158878 (Bug #28028, #28502) *
-            Focus remains on the Edit pane when you click the edit buttons pane
-            or the overview pane. 
+    #158878 (Bug #28028, #28502)
+        Focus remains on the Edit pane when you click the edit buttons pane
+        or the overview pane. 
 
-        #157616 (Bug #29589) *
-            Image file side-by-side properties pane now displays the
-            beginning of the text when the window is sized smaller than the
-            full text.
+    #157616 (Bug #29589)
+        Image file side-by-side properties pane now displays the
+        beginning of the text when the window is sized smaller than the
+        full text.
 
-        #157072 (Bug #29369) *
-            Image diff highlight slider no longer causes text to be
-            overlapped when increasing the horizontal size of the Viewer
-            Control.
+    #157072 (Bug #29369)
+        Image diff highlight slider no longer causes text to be
+        overlapped when increasing the horizontal size of the Viewer
+        Control.
 
-        #156573 (Bug #29449) *
-            Browse for files dialog now displays correct labels.
+    #156573 (Bug #29449)
+        Browse for files dialog now displays correct labels.
+
 
 ---------------------------------------------------------------------------
-
 Major new functionality in 2008.1
 
-        #149390 (Bug #21119) *
-            P4Merge adds support for diffing image files. You can diff the 
-            following image file types:
+    #149390 (Bug #21119)
+        P4Merge adds support for diffing image files. You can diff the 
+        following image file types:
 
-            * BMP
-            * GIF
-            * JPG, JPEG
-            * PNG
-            * PBM
-            * PGM
-            * PPM
-            * TIFF
-            * XBM
-            * XPM
+        BMP
+        GIF
+        JPG, JPEG
+        PNG
+        PBM
+        PGM
+        PPM
+        TIFF
+        XBM
+        XPM
 
-            For details about how to diff images, refer to the P4Merge online help.
+        For details about how to diff images, refer to the P4Merge online help.
 
-            Note: you can create plugins to add support for other image file 
-            types. For technical details, check the Trolltech web site.
+        Note: you can create plugins to add support for other image file 
+        types. For technical details, check the Trolltech web site.
 
-            Known Limitation
+        Known Limitation
 
-            P4V displays thumbnails for both image files and related file 
-            types such as Photoshop and Maya. You can diff images in P4V by 
-            dropping one thumbnail on another.
+        P4V displays thumbnails for both image files and related file 
+        types such as Photoshop and Maya. You can diff images in P4V by 
+        dropping one thumbnail on another.
 
-            However, P4Merge does not support all file types for
-            which thumbnails are displayed. For example, if you drop a 
-            Photoshop icon on another Photoshop icon to diff the files,
-            P4Merge determines that the file are not supported types
-            of image files and attempts to diff the files as text.
+        However, P4Merge does not support all file types for
+        which thumbnails are displayed. For example, if you drop a 
+        Photoshop icon on another Photoshop icon to diff the files,
+        P4Merge determines that the file are not supported types
+        of image files and attempts to diff the files as text.
 
-        #151214 (Bug #24980) *
-            P4Merge now has a full-featured help viewer that includes indexing,
-            searching, bookmarking and printing.
+    #151214 (Bug #24980)
+        P4Merge now has a full-featured help viewer that includes indexing,
+        searching, bookmarking and printing.
+
 
 ---------------------------------------------------------------------------
-
 Minor new functionality in 2008.1
 
-        #152294 (Bug #29015) *
-            Use Selection for Find added (Mac only)
+    #152294 (Bug #29015)
+        Use Selection for Find added (Mac only)
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2008.1
 
-        #191698 (Bug #32854) *
-            Entering Control+Return or Control+Enter in the merge results pane
-            now correctly saves just the Return or just the Enter in the merge
-            results file.
+    #191698 (Bug #32854)
+        Entering Control+Return or Control+Enter in the merge results pane
+        now correctly saves just the Return or just the Enter in the merge
+        results file.
 
-        #191553 (Bug #32841, #32847) *
-            P4Merge now displays and saves the correct results when using
-            the backspace or delete key at the top of the file.
+    #191553 (Bug #32841, #32847)
+        P4Merge now displays and saves the correct results when using
+        the backspace or delete key at the top of the file.
 
-        #191553 (Bug #32833, #32842, #32843, #32844) *
-            Dragging and dropping or pasting text at the beginning of the
-            file when cursor is in a different part of the file now 
-            correctly displays and saves the merge results file.
+    #191553 (Bug #32833, #32842, #32843, #32844)
+        Dragging and dropping or pasting text at the beginning of the
+        file when cursor is in a different part of the file now 
+        correctly displays and saves the merge results file.
 
-        #191553 (Bug #32832) *
-            Partially deleting last lines and reinserting last section
-            now displays and saves the merge results file in correct
-            order.
+    #191553 (Bug #32832)
+        Partially deleting last lines and reinserting last section
+        now displays and saves the merge results file in correct
+        order.
 
-        #190740 (Bug #32752) *
-            When dragging and dropping text between sections in the merge pane,
-            only affected sections will become editable (gray) and not the
-            sections in between.
+    #190740 (Bug #32752)
+        When dragging and dropping text between sections in the merge pane,
+        only affected sections will become editable (gray) and not the
+        sections in between.
 
-        #190170 (Bug #32765, #32753) *
-            Merge pane now correctly updates text and color immediately
-            after a cut and paste operation.
+    #190170 (Bug #32765, #32753)
+        Merge pane now correctly updates text and color immediately
+        after a cut and paste operation.
 
-        #188657 (Bug #32551) *
-            The file contents of the merged result now correctly match
-            the edited-then-saved file, after de-selecting last section 
-            then inserting new text.
+    #188657 (Bug #32551)
+        The file contents of the merged result now correctly match
+        the edited-then-saved file, after de-selecting last section 
+        then inserting new text.
 
-        #187296 (Bug #32440, #31351) *
-            Find next or previous no longer skip matching string. It correctly
-            starts from beginning or end of file where required.
+    #187296 (Bug #32440, #31351)
+        Find next or previous no longer skip matching string. It correctly
+        starts from beginning or end of file where required.
 
-        #187294 (Bug #32446) *
-            Debug messages no longer appear on Unix console when deleting
-            text in the merge pane.
+    #187294 (Bug #32446)
+        Debug messages no longer appear on Unix console when deleting
+        text in the merge pane.
 
-        #186651, #189578, #192509 (Bug #32363) *
-            Undo operation now works correctly after pasting text the top of
-            the file when there is text selected or not.
+    #186651, #189578, #192509 (Bug #32363)
+        Undo operation now works correctly after pasting text the top of
+        the file when there is text selected or not.
 
-        #167815 (Bug #30479) *
-            The Find feature is now much faster.
+    #167815 (Bug #30479)
+        The Find feature is now much faster.
 
-        #167815 (Bug #30491) *
-            When Find dialog comes up, focus is now always placed in the 
-            keyword field instead of on the Close button.
+    #167815 (Bug #30491)
+        When Find dialog comes up, focus is now always placed in the 
+        keyword field instead of on the Close button.
 
-        #160547 (Bug #30206) *
-            P4Merge no longer crashes if the user cancels out of the file size
-            warning dialog.
+    #160547 (Bug #30206)
+        P4Merge no longer crashes if the user cancels out of the file size
+        warning dialog.
 
-        #157352 (Bug #29714) *
-            CTRL+<number> keys no longer adds a number to the Edit Merge pane
-            if there is no difference or conflict to scroll to.
+    #157352 (Bug #29714)
+        CTRL+<number> keys no longer adds a number to the Edit Merge pane
+        if there is no difference or conflict to scroll to.
 
-        #155835 (Bug #29495) *
-            Character encoding mismatch dialog now contains additional
-            information when diffing unsupported file types.
+    #155835 (Bug #29495)
+        Character encoding mismatch dialog now contains additional
+        information when diffing unsupported file types.
 
-        #155377 (Bug #24121, #29440, #29510) *
-            P4Merge no longer crashes if file lacks read permission,
-            or a file name or path contains quotes.
+    #155377 (Bug #24121, #29440, #29510)
+        P4Merge no longer crashes if file lacks read permission,
+        or a file name or path contains quotes.
 
-        #154892 (Bug #29348) *
-            Character encoding mismatch dialog now has access keys and
-            correct dialog buttons.
+    #154892 (Bug #29348)
+        Character encoding mismatch dialog now has access keys and
+        correct dialog buttons.
 
-        #154720 (Bug #29333) *
-            P4merge no longer crashes on Linux if the Application font and
-            Text Format fonts are identical.
+    #154720 (Bug #29333)
+        P4merge no longer crashes on Linux if the Application font and
+        Text Format fonts are identical.
 
-        #153100 (Bug #29012) *
-            P4Merge is brought to the front when invoked from P4V. (Mac only).
+    #153100 (Bug #29012)
+        P4Merge is brought to the front when invoked from P4V. (Mac only).
 
-        #152032 (Bug #28415) *
-            To avoid conflict with system color preferences, P4Merge now
-            displays the window background as white and foreground text as black.
+    #152032 (Bug #28415)
+        To avoid conflict with system color preferences, P4Merge now
+        displays the window background as white and foreground text as black.
 
-        #148444 (Bug #27626) *
-            Erase leftover swooshes after deleting all text from edit pane.
+    #148444 (Bug #27626)
+        Erase leftover swooshes after deleting all text from edit pane.
 
-        #148110, #154498 (Bug #28429) *
-            P4Merge now correctly uses the tab width specified on the command
-            line.
+    #148110, #154498 (Bug #28429)
+        P4Merge now correctly uses the tab width specified on the command
+        line.
+
 
 ---------------------------------------------------------------------------
-
 Minor new functionality in 2007.3
 
-        #140738 (Bug #26895) *
-            Shortcut keys are now displayed in the tool bar menu tooltips.
+    #140738 (Bug #26895)
+        Shortcut keys are now displayed in the tool bar menu tooltips.
 
-        #139077 (Bug #17429) *
-            The Current difference highlight is now much easier to see.
-            It has a solid line around it instead of having a darker
-            background.
+    #139077 (Bug #17429)
+        The Current difference highlight is now much easier to see.
+        It has a solid line around it instead of having a darker
+        background.
 
-        #137802            (Bug #26891) *
-            Window geometry of the Compare Files dialog is now remembered.
+    #137802            (Bug #26891)
+        Window geometry of the Compare Files dialog is now remembered.
 
-        #135026, #144054 (Bug #17171, #28029) *
-            Users can now drag and drop files into the Compare Files Dialog.
+    #135026, #144054 (Bug #17171, #28029)
+        Users can now drag and drop files into the Compare Files Dialog.
 
-        #130708 (Bug #27963) *
-            GoTo Line dialog now shows the maximum number of lines in the
-            file/pane.
+    #130708 (Bug #27963)
+        GoTo Line dialog now shows the maximum number of lines in the
+        file/pane.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2007.3
 
-        #148946 (Bug #28585) *
-            Context sensitive help now works correctly on Mac OS X 10.5.
-            On Mac OS X 10.5 and above, use 'Alt-Command-?' as the Shortcut 
-            key combination to launch Context Sensitive Help. (Mac only)
+    #148946 (Bug #28585)
+        Context sensitive help now works correctly on Mac OS X 10.5.
+        On Mac OS X 10.5 and above, use 'Alt-Command-?' as the Shortcut 
+        key combination to launch Context Sensitive Help. (Mac only)
 
-        #148870 (Bug #21000) *
-            On UNIX, P4Merge now has an 'Application Font' preference.
+    #148870 (Bug #21000)
+        On UNIX, P4Merge now has an 'Application Font' preference.
 
-        #148502 (Bug #28546) *
-            P4Merge no longer crashes if the font is set to a very large size.
+    #148502 (Bug #28546)
+        P4Merge no longer crashes if the font is set to a very large size.
 
-        #146957 (Bug #28072) *
-            On the Mac, when choosing a different character encoding in the 
-            character encoding mismatch dialog, P4Merge no longer ignores 
-            the new choice.
+    #146957 (Bug #28072)
+        On the Mac, when choosing a different character encoding in the 
+        character encoding mismatch dialog, P4Merge no longer ignores 
+        the new choice.
 
-        #146743 (Bug #28195) *
-            Scrolling to diffs is no longer animated and it now snaps into
-            place.
+    #146743 (Bug #28195)
+        Scrolling to diffs is no longer animated and it now snaps into
+        place.
 
-        #146441 (Bug #28293) *
-            The UNIX line ending preference is no longer ignored on Windows.
+    #146441 (Bug #28293)
+        The UNIX line ending preference is no longer ignored on Windows.
 
-        #146078 (Bug #27488) *
-            Unnecessary compare files dialog no longer displays when
-            starting P4Merge from P4V on the Mac.
+    #146078 (Bug #27488)
+        Unnecessary compare files dialog no longer displays when
+        starting P4Merge from P4V on the Mac.
 
-        #146078 (Bug #28072) *
-            Character Encoding is now correctly updated after the user chooses
-            a different one from the character encoding dialog on the Mac.
+    #146078 (Bug #28072)
+        Character Encoding is now correctly updated after the user chooses
+        a different one from the character encoding dialog on the Mac.
 
-        #145819 (Bug #28205) *
-            Shortcut for "Select All" now functions properly.
+    #145819 (Bug #28205)
+        Shortcut for "Select All" now functions properly.
 
-        #145213 (Bug #26923) *
-            P4Merge no longer hardcodes the active selection color in its
-            panes, and it now uses the system selection color.
-            The user can now customize the active selection color and
-            P4Merge will use that.
+    #145213 (Bug #26923)
+        P4Merge no longer hardcodes the active selection color in its
+        panes, and it now uses the system selection color.
+        The user can now customize the active selection color and
+        P4Merge will use that.
 
-        #144937 (Bug #28090) *
-            When in merge mode, and the document is reloaded by a Refresh,
-            changing the Comparison Method or the Character Encoding,
-            the document now scrolls to the first diff and makes
-            it active.
+    #144937 (Bug #28090)
+        When in merge mode, and the document is reloaded by a Refresh,
+        changing the Comparison Method or the Character Encoding,
+        the document now scrolls to the first diff and makes
+        it active.
 
-        #144237 (Bug #28032) *
-            Scrolling in merge pane now works after selecting all text,
-            deleting it and then reloading the text by refreshing the
-            document, changing the character encoding or the
-            comparison method.
+    #144237 (Bug #28032)
+        Scrolling in merge pane now works after selecting all text,
+        deleting it and then reloading the text by refreshing the
+        document, changing the character encoding or the
+        comparison method.
 
-        #142799 (Bug #27844) *
-            To be consistent with Mac standards, menus on the Mac no longer
-            have icons.
+    #142799 (Bug #27844)
+        To be consistent with Mac standards, menus on the Mac no longer
+        have icons.
 
-        #141817 (Bug #25158) *
-            Strike-through line now gets removed when the section is
-            edited.
+    #141817 (Bug #25158)
+        Strike-through line now gets removed when the section is
+        edited.
 
-        #141817 (Bug #13539) *
-            On deleted lines, the strike-through line now draws all the
-            way across from the beginning of the line to the end of the
-            text.
+    #141817 (Bug #13539)
+        On deleted lines, the strike-through line now draws all the
+        way across from the beginning of the line to the end of the
+        text.
 
-        #141076 (Bug #26895) *
-            Shortcut key for "Refresh All" on the Mac now maps to
-            Control+Option+R.
+    #141076 (Bug #26895)
+        Shortcut key for "Refresh All" on the Mac now maps to
+        Control+Option+R.
 
-        #140923, #143675 (Bug #26484) *
-            Tab spacing of 0 is no longer allowed.
+    #140923, #143675 (Bug #26484)
+        Tab spacing of 0 is no longer allowed.
 
-        #139077 (Bug #27624) *
-            Selection no longer extends to the end of the pane. It only
-            highlights to the end of the text selected, which is the 
-            standard behavior for text selection.
+    #139077 (Bug #27624)
+        Selection no longer extends to the end of the pane. It only
+        highlights to the end of the text selected, which is the 
+        standard behavior for text selection.
 
-        #137772 (Bug #26687) *
-            Fixed problem where number of files being passed to P4Merge
-            from P4V was being set incorrectly, causing
-            P4Merge to display an error.
+    #137772 (Bug #26687)
+        Fixed problem where number of files being passed to P4Merge
+        from P4V was being set incorrectly, causing
+        P4Merge to display an error.
 
-        #130708 (Bug #23543) *
-            P4Merge no longer scrolls past the end of the files.
+    #130708 (Bug #23543)
+        P4Merge no longer scrolls past the end of the files.
 
-        #130708 (Bug #21354) *
-            When finding text in P4Merge, highlighted "found" entry is now
-            centered in the pane.
+    #130708 (Bug #21354)
+        When finding text in P4Merge, highlighted "found" entry is now
+        centered in the pane.
 
-        #130708 (Bug #24748) *
-            P4Merge now implements the Mac shortcut of shift-scrollwheel
-            allowing horizontal scrolling.
+    #130708 (Bug #24748)
+        P4Merge now implements the Mac shortcut of shift-scrollwheel
+        allowing horizontal scrolling.
 
-        #130708 (Bug #13650, #26103) *
-            Block now turns grey when typing or pasting at the end
-            of the merge pane.
+    #130708 (Bug #13650, #26103)
+        Block now turns grey when typing or pasting at the end
+        of the merge pane.
 
-        #130708 (Bug #16134) *
-            Typing in merge pane now longer has a delay on large files after
-            deleting all text and start typing.
+    #130708 (Bug #16134)
+        Typing in merge pane now longer has a delay on large files after
+        deleting all text and start typing.
 
-        #130708 (Bug #17385) *
-            P4Merge now scrolls to the next diff marker when changing
-            comparison method that causes current diff to go away.
+    #130708 (Bug #17385)
+        P4Merge now scrolls to the next diff marker when changing
+        comparison method that causes current diff to go away.
 
-        #130708 (Bug #19651) *
-            Vertical scrollbar no longer disappears when changing character
-            encoding in P4Merge.
+    #130708 (Bug #19651)
+        Vertical scrollbar no longer disappears when changing character
+        encoding in P4Merge.
 
-        #130708 (Bug #21151) *
-            When changing fonts, the line number font no longer changes.
+    #130708 (Bug #21151)
+        When changing fonts, the line number font no longer changes.
 
-        #130708 (Bug #21360) *
-            Display no longer flickers when scrolling gets near the right
-            side of the document.
+    #130708 (Bug #21360)
+        Display no longer flickers when scrolling gets near the right
+        side of the document.
 
-        #130708 (Bug #21461) *
-            Highlights no longer appear and disappear depending if line
-            is in window pane's view.
+    #130708 (Bug #21461)
+        Highlights no longer appear and disappear depending if line
+        is in window pane's view.
 
-        #130708 (Bug #21695) *
-            The deleted lines are now correctly shown with strikethrough in
-            single pane diff mode.
+    #130708 (Bug #21695)
+        The deleted lines are now correctly shown with strikethrough in
+        single pane diff mode.
 
-        #130708 (Bug #21937) *
-            When changing fonts, the middle splitter swoosh and line numbers
-            are no longer out of sync with the selections in the panes.
+    #130708 (Bug #21937)
+        When changing fonts, the middle splitter swoosh and line numbers
+        are no longer out of sync with the selections in the panes.
 
-        #130708 (Bug #22043) *
-            P4Merge window no longer resizes when closing the application.
+    #130708 (Bug #22043)
+        P4Merge window no longer resizes when closing the application.
 
-        #130708 (Bug #23407) *
-            Highlighted text is correctly shown when switching between
-            character encodings.
+    #130708 (Bug #23407)
+        Highlighted text is correctly shown when switching between
+        character encodings.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2007.2
 
-        #130446 (Bug #25298 ) *
-            When merging or diffing large files, some Japanese double byte 
-            characters could get split in the incorrect place resulting in
-            corrupted characters.  This problem has been fixed.
+    #130446 (Bug #25298 )
+        When merging or diffing large files, some Japanese double byte 
+        characters could get split in the incorrect place resulting in
+        corrupted characters.  This problem has been fixed.
 
-        #130439, #130558 (Bug #25308) *
-            Characters now display correctly after entering the convert/space
-            key in the IME pad.
+    #130439, #130558 (Bug #25308)
+        Characters now display correctly after entering the convert/space
+        key in the IME pad.
 
-        #128843 (Bug #25122) *
-            When using the Delete key to edit, Merge results are now saved
-            correctly.
+    #128843 (Bug #25122)
+        When using the Delete key to edit, Merge results are now saved
+        correctly.
 
-        #128753 (Bug #24994, #25123) *
-            All Asian characters are correctly displayed when selecting and
-            entering text on the same operation.
+    #128753 (Bug #24994, #25123)
+        All Asian characters are correctly displayed when selecting and
+        entering text on the same operation.
 
-        #128188, #130488 (Bug #23738) *
-            All Japanese characters are now displayed when using Shift-JIS
-            character set.
+    #128188, #130488 (Bug #23738)
+        All Japanese characters are now displayed when using Shift-JIS
+        character set.
 
-        #127577 (Bug #25103, #25104) *
-            When refreshing a file displayed in P4Merge, the size is 
-            recalculated, find results and goto lines will be 
-            highlighted appropriately.
+    #127577 (Bug #25103, #25104)
+        When refreshing a file displayed in P4Merge, the size is 
+        recalculated, find results and goto lines will be 
+        highlighted appropriately.
 
-        #127335 (Bug #23812) *
-            Translation files (.qm) are now loaded from the same directory
-            as the P4Merge executable. 
+    #127335 (Bug #23812)
+        Translation files (.qm) are now loaded from the same directory
+        as the P4Merge executable. 
 
-        #124593 (Bug #23405) *
-            P4Merge no longer crashes when changing tab spacing to 0 and 
-            the contents of one of the files start with a tab. 
+    #124593 (Bug #23405)
+        P4Merge no longer crashes when changing tab spacing to 0 and 
+        the contents of one of the files start with a tab. 
+
 
 ---------------------------------------------------------------------------
-
 New features in 2007.1
 
-        #107598 (Bug #17759) *
-            File names are now displayed when in single-pane mode.
+    #107598 (Bug #17759)
+        File names are now displayed when in single-pane mode.
 
-        #107276 (Bug #17997) *
-            The next/previous buttons are now always enabled if there is only
-            one diff in the file. Clicking them scroll to the diff.
+    #107276 (Bug #17997)
+        The next/previous buttons are now always enabled if there is only
+        one diff in the file. Clicking them scroll to the diff.
 
-        #106451 (Bug #21896) *
-            P4Merge now checks to see if the initial character set is okay 
-            for all files. If it's not, P4Merge tries the System 
-            charset. If the System charset is okay, P4Merge selects 
-            System as the default in the Charset confirmation dialog 
-            drop-down list to indicate that the files are most likely 
-            text and System is a better choice. The Charset 
-            confirmation dialog now has a "Yes", "No" and "Cancel" 
-            buttons instead of the "Continue..." and "Cancel" buttons. 
+    #106451 (Bug #21896)
+        P4Merge now checks to see if the initial character set is okay 
+        for all files. If it's not, P4Merge tries the System 
+        charset. If the System charset is okay, P4Merge selects 
+        System as the default in the Charset confirmation dialog 
+        drop-down list to indicate that the files are most likely 
+        text and System is a better choice. The Charset 
+        confirmation dialog now has a "Yes", "No" and "Cancel" 
+        buttons instead of the "Continue..." and "Cancel" buttons. 
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2007.1
 
-        #123589 (Bug #24812) *
-            Larger files with double byte characters are now handled
-            correctly when merging. 
+    #123589 (Bug #24812)
+        Larger files with double byte characters are now handled
+        correctly when merging. 
 
-        #121251 (Bug #24060) *
-            The text displayed by the -h flag for the command-line help 
-            can now properly be translated into non-English languages. 
-            This fix applies to Windows and Unix platforms only.
+    #121251 (Bug #24060)
+        The text displayed by the -h flag for the command-line help 
+        can now properly be translated into non-English languages. 
+        This fix applies to Windows and Unix platforms only.
 
-        #118633 (Bug #22781) *
-            Improved the behavior of P4Merge when using multiple 
-            displays. There is no longer a limit on the size of the 
-            window to the desktop/display. Additionally, there is no 
-            longer a resize of the window when moving between displays 
-            of different sizes. There is now the ability to restore to 
-            a position that spans more than one display. Lastly, there 
-            is only a resize on restore to fit the desktop if the 
-            prior position is missing (because the second monitor was 
-            disconnected).
+    #118633 (Bug #22781)
+        Improved the behavior of P4Merge when using multiple 
+        displays. There is no longer a limit on the size of the 
+        window to the desktop/display. Additionally, there is no 
+        longer a resize of the window when moving between displays 
+        of different sizes. There is now the ability to restore to 
+        a position that spans more than one display. Lastly, there 
+        is only a resize on restore to fit the desktop if the 
+        prior position is missing (because the second monitor was 
+        disconnected).
 
-        #115338 (Bug #23376) *
-            Single-Pane diff mode now correctly displays strikethrough text.
+    #115338 (Bug #23376)
+        Single-Pane diff mode now correctly displays strikethrough text.
 
-        #113949 (Bug #21973) *
-            P4Merge help images can now be localized.
+    #113949 (Bug #21973)
+        P4Merge help images can now be localized.
 
-        #114643 (Bug #23557) *
-            Fixed problem where when there were two windows open, the toolbar
-            buttons in both windows would reflect the state of the *frontmost*
-            window.
+    #114643 (Bug #23557)
+        Fixed problem where when there were two windows open, the toolbar
+        buttons in both windows would reflect the state of the *frontmost*
+        window.
 
-        #114156 (Bug #23430) *
-            The correct Help page is displayed when in Merge mode.
+    #114156 (Bug #23430)
+        The correct Help page is displayed when in Merge mode.
 
-        #111179 (Bug #22995) *
-            P4Merge now finds the first instance of the search string, if one
-            of the files began with the search string input.
+    #111179 (Bug #22995)
+        P4Merge now finds the first instance of the search string, if one
+        of the files began with the search string input.
 
-        #111178 (Bug #22950) *
-            P4Merge now correctly performs a text search using the Find
-            facility with a full search from the top to the bottom of a file.
+    #111178 (Bug #22950)
+        P4Merge now correctly performs a text search using the Find
+        facility with a full search from the top to the bottom of a file.
 
-        #109126 (Bug #22453 ) *
-            Switching between windows in P4Merge is now faster.
+    #109126 (Bug #22453 )
+        Switching between windows in P4Merge is now faster.
 
-        #108434 (Bug #22313, #22314 ) *
-            P4Merge no longer crashes in some instances when finding forward
-            then backward.
+    #108434 (Bug #22313, #22314 )
+        P4Merge no longer crashes in some instances when finding forward
+        then backward.
 
-        #108418 (Bug #7975) *
-            P4Merge now displays a dialog when you switch views by clicking on
-            the diagram. This dialog asks if you want to replace the Merge
-            result and reminds you that you can choose Undo to go back to a
-            previous version of the Merge result.
+    #108418 (Bug #7975)
+        P4Merge now displays a dialog when you switch views by clicking on
+        the diagram. This dialog asks if you want to replace the Merge
+        result and reminds you that you can choose Undo to go back to a
+        previous version of the Merge result.
 
-        #107084 (Bug #20648) *
-            The taskbar on Unix now displays a P4Merge application icon when
-            P4Merge is running.
+    #107084 (Bug #20648)
+        The taskbar on Unix now displays a P4Merge application icon when
+        P4Merge is running.
 
-        #107032 (Bug #21191) *
-            P4Merge no longer crashes if you remove one of the files and then
-            refresh P4Merge.
+    #107032 (Bug #21191)
+        P4Merge no longer crashes if you remove one of the files and then
+        refresh P4Merge.
 
-        #106451 (Bug #22032) *
-            The system charset that you select in the Charset 
-            confirmation dialog is now passed correctly to P4Merge. 
+    #106451 (Bug #22032)
+        The system charset that you select in the Charset 
+        confirmation dialog is now passed correctly to P4Merge. 
 
-        #105931 (Bug #21699) *
-            PageUp, PageDown, End and Home keys now work properly.
+    #105931 (Bug #21699)
+        PageUp, PageDown, End and Home keys now work properly.
 
-        #103290 (Bug # 21581) *
-            The text displayed for the Comparison Method and Character 
-            Encoding menus can now properly be translated into non-English
-            languages.
+    #103290 (Bug # 21581)
+        The text displayed for the Comparison Method and Character 
+        Encoding menus can now properly be translated into non-English
+        languages.
 
-        #103093 (Bug #21591) *
-            On Windows, ESC no longer closes the main P4Merge application
-            window.
+    #103093 (Bug #21591)
+        On Windows, ESC no longer closes the main P4Merge application
+        window.
 
-        #101533 (Bug #21161) *
-            In P4Merge, changing the character encoding no longer loses the
-            current diff selection in merge mode.
+    #101533 (Bug #21161)
+        In P4Merge, changing the character encoding no longer loses the
+        current diff selection in merge mode.
+
 
 ---------------------------------------------------------------------------
-
 New features in 2006.1
 
-        #96922 (Bug #18090) *
-            P4Merge now allows up to 10 MB of combined file size limit.
-            Users will get a warning if the combined file size is between 2MB
-            and 10MB, but will be allowed to continue if they choose to do so.
+    #96922 (Bug #18090)
+        P4Merge now allows up to 10 MB of combined file size limit.
+        Users will get a warning if the combined file size is between 2MB
+        and 10MB, but will be allowed to continue if they choose to do so.
 
-        #95914 (Bug #15307) *
-            Additional properties now exist in the Info.plist file in Macintosh
-            OS X products. You can inspect Version information in the Finder as
-            well as look for the bundle using CFBundleSignature and
-            CFBundleIdentifier. 
+    #95914 (Bug #15307)
+        Additional properties now exist in the Info.plist file in Macintosh
+        OS X products. You can inspect Version information in the Finder as
+        well as look for the bundle using CFBundleSignature and
+        CFBundleIdentifier. 
 
-        #95405 (Bug #10420) *
-            In diff and merge modes, P4Merge can now be refreshed. In diff
-            mode, you can refresh and re-diff files without restarting the
-            P4Merge window. In merge mode, if the merged result has been
-            modified, a warning prompt is displayed, stating that, if you
-            refresh, all edits will be lost.  
+    #95405 (Bug #10420)
+        In diff and merge modes, P4Merge can now be refreshed. In diff
+        mode, you can refresh and re-diff files without restarting the
+        P4Merge window. In merge mode, if the merged result has been
+        modified, a warning prompt is displayed, stating that, if you
+        refresh, all edits will be lost.  
 
-        #93210, #99919, #99993 (Bug #20019, #20973) *
-            P4Merge now detects if the charset does not match the files being
-            merged, and displays a "Continue?" prompt.
+    #93210, #99919, #99993 (Bug #20019, #20973)
+        P4Merge now detects if the charset does not match the files being
+        merged, and displays a "Continue?" prompt.
 
-        Improvements made to the user interface:
+    Improvements made to the user interface:
 
-        #95288, #95426 , #95431 (Bug #17789, #20056) *
-            In the Choose Files and Preferences Dialog, the "Enter" or "Return"
-            keys now accept the highlighted choice.
+    #95288, #95426 , #95431 (Bug #17789, #20056)
+        In the Choose Files and Preferences Dialog, the "Enter" or "Return"
+        keys now accept the highlighted choice.
 
-        #94526, #94706 (Bug #15063, #17866, #18506) *
-            P4Merge now displays merge file titles based on context: if invoked
-            standalone, it displays Left/Right, if invoked from P4V's Resolve
-            dialog, it displays Source/Target or Yours/Theirs.
+    #94526, #94706 (Bug #15063, #17866, #18506)
+        P4Merge now displays merge file titles based on context: if invoked
+        standalone, it displays Left/Right, if invoked from P4V's Resolve
+        dialog, it displays Source/Target or Yours/Theirs.
 
-        #89587 (Bug #18908) *
-            ESC key now closes the Choose Files and the Preferences dialogs on
-            Windows.
+    #89587 (Bug #18908)
+        ESC key now closes the Choose Files and the Preferences dialogs on
+        Windows.
 
-        #87488 (Bug #17330) *
-            P4Merge now correctly handles dragging of windows to secondary
-            displays of different resolution and dynamic changes to screen
-            resolution.  
+    #87488 (Bug #17330)
+        P4Merge now correctly handles dragging of windows to secondary
+        displays of different resolution and dynamic changes to screen
+        resolution.  
 
-        #86957 (Bug #18151, #18153, #18216) *
-            Save/Restore of window size and positions on multiple monitor
-            systems are now remembered.
+    #86957 (Bug #18151, #18153, #18216)
+        Save/Restore of window size and positions on multiple monitor
+        systems are now remembered.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2006.1
 
-        #106096 (Bug #21178) *
-            Scrollbars now adjust correctly when changing the font or tab
-            width.
+    #106096 (Bug #21178)
+        Scrollbars now adjust correctly when changing the font or tab
+        width.
 
-        #105513 (Bug #21068) *
-            P4Merge could get into an endless loop and crash when scrolling
-            horizontally using the scrollbar.
+    #105513 (Bug #21068)
+        P4Merge could get into an endless loop and crash when scrolling
+        horizontally using the scrollbar.
 
-        #105439 (Bug #21178) *
-            It is now possible to horizontally scroll to the end of lines that
-            contained a lot of whitespace and tabs. Horizontal.scrollbar now
-            adjusts correctly when changing tab width and font.
+    #105439 (Bug #21178)
+        It is now possible to horizontally scroll to the end of lines that
+        contained a lot of whitespace and tabs. Horizontal.scrollbar now
+        adjusts correctly when changing tab width and font.
 
-        #105210 (Bug #19555) *
-            P4Merge now accepts the "System" character set in the command
-            line. It is specified as "-C none".
+    #105210 (Bug #19555)
+        P4Merge now accepts the "System" character set in the command
+        line. It is specified as "-C none".
 
-        #104502 (Bug #21733) *
-            Colors in P4Merge are now getting drawn correctly when scrolling.
+    #104502 (Bug #21733)
+        Colors in P4Merge are now getting drawn correctly when scrolling.
 
-        #104424 (Bug #21598) *
-            Swooshes in the splitters in P4Merge and diff tools no
-            longer disappear when using the find or the goto dialog.
+    #104424 (Bug #21598)
+        Swooshes in the splitters in P4Merge and diff tools no
+        longer disappear when using the find or the goto dialog.
 
-        #103058, 103319 (Bug #21562, #21563) *
-            Corrected condition where custom editing of the merge results
-            file could strip line endings and cause incorrect results to be
-            saved.
+    #103058, 103319 (Bug #21562, #21563)
+        Corrected condition where custom editing of the merge results
+        file could strip line endings and cause incorrect results to be
+        saved.
 
-        #103037 (Bug #21162) *
-            Copy/Cut text now placing selected text in clipboard correctly.
+    #103037 (Bug #21162)
+        Copy/Cut text now placing selected text in clipboard correctly.
 
-        #102244 (Bug #21406) *
-            Merge results file names with Japanese characters can now be saved.
+    #102244 (Bug #21406)
+        Merge results file names with Japanese characters can now be saved.
 
-        #101534 (Bug #21310, #21311) *
-            Line numbers and text now align and refresh correctly.
+    #101534 (Bug #21310, #21311)
+        Line numbers and text now align and refresh correctly.
 
-        #101533 (Bug #21290) *
-            Changing comparison methods or refreshing no longer scrolls to the
-            top of the document.
+    #101533 (Bug #21290)
+        Changing comparison methods or refreshing no longer scrolls to the
+        top of the document.
 
-        #101403 (Bug #21265) *
-            Current diff now correctly centered on the display.
+    #101403 (Bug #21265)
+        Current diff now correctly centered on the display.
 
-        #101374, #101583 (Bug #21285) *
-            Line number background color now matches the current diff.
+    #101374, #101583 (Bug #21285)
+        Line number background color now matches the current diff.
 
-        #101117 *, #101239 (Bug #21257)*
-            Swooshes between diffs and in merge pane now present smoothly.
+    #101117 *, #101239 (Bug #21257)*
+        Swooshes between diffs and in merge pane now present smoothly.
 
-        #101032, #101039, #101050 (Bug #21250) *
-            P4Merge process now exits properly when user selects Cancel from
-            the dialogs.
+    #101032, #101039, #101050 (Bug #21250)
+        P4Merge process now exits properly when user selects Cancel from
+        the dialogs.
 
-        #100973 (Bug #21166) *
-            Line ending settings passed from the command line, P4V or P4Win are
-            now correctly recognized.
+    #100973 (Bug #21166)
+        Line ending settings passed from the command line, P4V or P4Win are
+        now correctly recognized.
 
-        #96592, #98600 (Bug #20691) *
-            P4Merge/Mac no longer crashes when running on unsupported versions
-            of Mac OS X. It instead shows a message to the user and exits
-            gracefully.
+    #96592, #98600 (Bug #20691)
+        P4Merge/Mac no longer crashes when running on unsupported versions
+        of Mac OS X. It instead shows a message to the user and exits
+        gracefully.
 
-        #96190 (Bug #20471) *
-            When opened from P4V, P4Merge sets the left pane to receive focus.
-            It also no longer shows an empty window when resizing.
+    #96190 (Bug #20471)
+        When opened from P4V, P4Merge sets the left pane to receive focus.
+        It also no longer shows an empty window when resizing.
 
-        #96068 (Bug #20406) *
-            P4Merge now tries to continue even if it encounters parameters it
-            does not understand. An error message is displayed if a parameter
-            cannot be processed. In prior releases, P4Merge failed silently
-            when called from P4V with invalid parameters.
+    #96068 (Bug #20406)
+        P4Merge now tries to continue even if it encounters parameters it
+        does not understand. An error message is displayed if a parameter
+        cannot be processed. In prior releases, P4Merge failed silently
+        when called from P4V with invalid parameters.
 
-        #95721 (Bug #18904) *
-            In P4Merge you can no longer launch the Goto dialog while the Find
-            dialog is displayed.
+    #95721 (Bug #18904)
+        In P4Merge you can no longer launch the Goto dialog while the Find
+        dialog is displayed.
 
-        #95685 (Bug #19009) *
-            The preference dialog no longer appears in the Windows Task Bar.
+    #95685 (Bug #19009)
+        The preference dialog no longer appears in the Windows Task Bar.
 
-        #95560 (Bug #19440) *
-            P4Merge now tabs correctly to the Merge pane and focus is placed at
-            the top of the pane.
+    #95560 (Bug #19440)
+        P4Merge now tabs correctly to the Merge pane and focus is placed at
+        the top of the pane.
 
-        #95469 (Bug #19298) *
-            On Macintosh, P4Merge no longer crashes on exit if a second P4Merge
-            instance is started from the command line.
+    #95469 (Bug #19298)
+        On Macintosh, P4Merge no longer crashes on exit if a second P4Merge
+        instance is started from the command line.
 
-        #95457 (Bug #20148) *
-            On Macintosh, P4Merge buttons are appropriately disabled in the
-            P4Merge window after additional P4Merge windows are opened.
+    #95457 (Bug #20148)
+        On Macintosh, P4Merge buttons are appropriately disabled in the
+        P4Merge window after additional P4Merge windows are opened.
 
-        #95426, #95431 (Bug # 20056) *
-            The Preferences Dialog, OK and Cancel buttons now display in the
-            correct order for Microsoft Windows.
+    #95426, #95431 (Bug # 20056)
+        The Preferences Dialog, OK and Cancel buttons now display in the
+        correct order for Microsoft Windows.
 
-        #95376 (Bug #20427)*
-            P4Merge successfully docks and moves the toolbar.
+    #95376 (Bug #20427)*
+        P4Merge successfully docks and moves the toolbar.
 
-        #95249 (Bug #17217) *
-            Tab order now behaves correctly on the Choose Files Dialog.
+    #95249 (Bug #17217)
+        Tab order now behaves correctly on the Choose Files Dialog.
 
-        #94808 (Bug #19426, #20147) *
-            P4Merge no longer shows an extra blank line at the end of each
-            file.
+    #94808 (Bug #19426, #20147)
+        P4Merge no longer shows an extra blank line at the end of each
+        file.
 
-        #94744 (Bug #20303) *
-            P4Merge window title now displays correct file information.  
+    #94744 (Bug #20303)
+        P4Merge window title now displays correct file information.  
 
-        #94145 (Bug #19936) *
-            Single Pane Diff mode supports using the Find Dialog.
+    #94145 (Bug #19936)
+        Single Pane Diff mode supports using the Find Dialog.
 
-        #93606 (Bug #20069) *
-            P4Merge buttons correctly refresh after changing comparison 
-            methods.
+    #93606 (Bug #20069)
+        P4Merge buttons correctly refresh after changing comparison 
+        methods.
 
-        #92187 (Bug #19439) *
-            P4Merge correctly saves the toolbar "visible/invisible" setting.
+    #92187 (Bug #19439)
+        P4Merge correctly saves the toolbar "visible/invisible" setting.
 
-        #89618 (Bug #19477) *
-            Command line merge recognizes encoding preferences.
+    #89618 (Bug #19477)
+        Command line merge recognizes encoding preferences.
 
-        #89590 (Bug #19080) *
-            Filenames display correctly in the P4Merge title bar. The revision
-            displays after the file extension.
+    #89590 (Bug #19080)
+        Filenames display correctly in the P4Merge title bar. The revision
+        displays after the file extension.
+
 
 ---------------------------------------------------------------------------
-
 New features in 2005.2
 
-        #85515 (Bug #18644) *
-            P4Merge now supports additional character sets including UTF-16. 
+    #85515 (Bug #18644)
+        P4Merge now supports additional character sets including UTF-16. 
 
-            The new character sets are:
-            Unicode:
-            UTF-8 (BOM)
-            UTF-16 with Little and Big Endian formats with or without a
-            Byte-Order-Mark
-            Cyrillic:
-            ISO 8859-5
-            KOI8-R
-            WinAnsi 1251
+        The new character sets are:
+        Unicode:
+        UTF-8 (BOM)
+        UTF-16 with Little and Big Endian formats with or without a
+        Byte-Order-Mark
+        Cyrillic:
+        ISO 8859-5
+        KOI8-R
+        WinAnsi 1251
 
-        #84432 (Bug #15062) *
-            The edit buttons in the merge pane have tooltips.
+    #84432 (Bug #15062)
+        The edit buttons in the merge pane have tooltips.
 
-        #83482 (Bug #17208) *
-            P4Merge now supports the following command line parameters:
+    #83482 (Bug #17208)
+        P4Merge now supports the following command line parameters:
 
-            Options:
+        Options:
 
-            The following three options are mutually exclusive:
-            -db    Ignore line ending and whitespace length differences
-            -dw    Ignore line ending and all whitespace differences
-            -dl    Ignore line ending differences
+        The following three options are mutually exclusive:
+        -db    Ignore line ending and whitespace length differences
+        -dw    Ignore line ending and all whitespace differences
+        -dl    Ignore line ending differences
 
-            -tw <tab width>
-            -le <line endings>
-            'mac'
-            'win'
-            'unix'
+        -tw <tab width>
+        -le <line endings>
+        'mac'
+        'win'
+        'unix'
 
-            -C  <character set>
+        -C  <character set>
 
-            Unicode:
-            'utf8'
-            'utf8-bom'       (UTF-8 with a Byte-Order Mark [BOM])
-            'utf16'          (UTF-16 with the default byte-order with a BOM)
-            'utf16-nobom'    (UTF-16 default byte-order )
-            'utf16be'        (UTF-16 big-endian byte-order)
-            'utf16be-bom'    (UTF-16 big-endian byte-order with BOM)
-            'utf16le'        (UTF-16 little-endian byte-order)
-            'utf16le-bom'    (UTF-16 little-endian byte-order with a BOM)
+        Unicode:
+        'utf8'
+        'utf8-bom'       (UTF-8 with a Byte-Order Mark [BOM])
+        'utf16'          (UTF-16 with the default byte-order with a BOM)
+        'utf16-nobom'    (UTF-16 default byte-order )
+        'utf16be'        (UTF-16 big-endian byte-order)
+        'utf16be-bom'    (UTF-16 big-endian byte-order with BOM)
+        'utf16le'        (UTF-16 little-endian byte-order)
+        'utf16le-bom'    (UTF-16 little-endian byte-order with a BOM)
 
-            Western European:
-            'iso8859-1'
-            'winansi'        (Windows code page 1252)
-            'macosroman'
-            'iso8859-15'
+        Western European:
+        'iso8859-1'
+        'winansi'        (Windows code page 1252)
+        'macosroman'
+        'iso8859-15'
 
-            Japanese:
-            'shiftjis'
-            'eucjp'
+        Japanese:
+        'shiftjis'
+        'eucjp'
 
-            Cyrillic:
-            'iso8859-5'
-            'koi8-r'
-            'cp1251'         (Windows code page 1251)
+        Cyrillic:
+        'iso8859-5'
+        'koi8-r'
+        'cp1251'         (Windows code page 1251)
 
-        #85982 (Bug #18285) *
-            The help window in P4Merge remembers its last position and size.
+    #85982 (Bug #18285)
+        The help window in P4Merge remembers its last position and size.
 
-        #82736 (Bug #17626) *
-            P4Merge now saves the position of splitters and whether 
-            the base file is displayed.
+    #82736 (Bug #17626)
+        P4Merge now saves the position of splitters and whether 
+        the base file is displayed.
 
-        #82585 (Bug #17761) *
-            P4Merge now saves the preference of whether diff is in "single"
-            or "double" pane mode.
+    #82585 (Bug #17761)
+        P4Merge now saves the preference of whether diff is in "single"
+        or "double" pane mode.
 
-        #82228 (Bug #7231) *
-            You can jump to a specific line using a "Go To" dialog.
+    #82228 (Bug #7231)
+        You can jump to a specific line using a "Go To" dialog.
 
-        #82069 (Bug #7232) *
-            You can display line numbers in read-only fields.
+    #82069 (Bug #7232)
+        You can display line numbers in read-only fields.
 
-        #81791 (Bug #7893) *
-            You can now search through the text in merge and diff modes.
+    #81791 (Bug #7893)
+        You can now search through the text in merge and diff modes.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2005.2
 
-        #120469 (Bug #24380) *
-            Using Input-Method Editing by starting with a selection would
-            cause the output file to not match the text input.
+    #120469 (Bug #24380)
+        Using Input-Method Editing by starting with a selection would
+        cause the output file to not match the text input.
 
-        #92521 (Bug #19787) *
-            Extra CR added to files when saving with Windows Line-Endings and
-            UTF-8.
+    #92521 (Bug #19787)
+        Extra CR added to files when saving with Windows Line-Endings and
+        UTF-8.
 
-        #91648 (Bug #19869) *
-            P4Merge no longer crashes when started from the command line with
-            relative file paths and the P4Merge application is already running.
+    #91648 (Bug #19869)
+        P4Merge no longer crashes when started from the command line with
+        relative file paths and the P4Merge application is already running.
 
-        #91527 (Bug #19787) *
-            Extra CR added to files when saving with Windows Line-Endings.
+    #91527 (Bug #19787)
+        Extra CR added to files when saving with Windows Line-Endings.
 
-        #90154 (Bug #19477) *
-            Command line merge recognizes encoding preferences.
+    #90154 (Bug #19477)
+        Command line merge recognizes encoding preferences.
 
-        #89841, #89630 (Bug #19441) *
-            No longer crashes when opening files that have an exclusive
-            read-lock due to being opened by another application.
+    #89841, #89630 (Bug #19441)
+        No longer crashes when opening files that have an exclusive
+        read-lock due to being opened by another application.
 
-        #85685 (Bug #17429) *
-            Current difference highlight is a bit darker so it's more visible
-            on LCD screens.
+    #85685 (Bug #17429)
+        Current difference highlight is a bit darker so it's more visible
+        on LCD screens.
 
-        #86189 (Bug #18844, #20765) *
-            Merge would wrongly duplicate a common insert
-            in some cases.
+    #86189 (Bug #18844, #20765)
+        Merge would wrongly duplicate a common insert
+        in some cases.
 
-        #85633 (Bug #18357) *
-            Text remains readable regardless of the color settings.
+    #85633 (Bug #18357)
+        Text remains readable regardless of the color settings.
 
-        #84530 (Bug #18304) *
-            P4Merge now saves the "toolbar visible/invisible" setting.
+    #84530 (Bug #18304)
+        P4Merge now saves the "toolbar visible/invisible" setting.
 
-        #84539 (Bug #18324) *
-            Clicking in the read-only fields no longer causes all
-            the text fields to scroll to the left.
+    #84539 (Bug #18324)
+        Clicking in the read-only fields no longer causes all
+        the text fields to scroll to the left.
 
-        #84336 (Bug #18539) *
-            Consolidated Show and Hide actions under one menu called 
-            View->Show/Hide. Changed Find menu to Search.
+    #84336 (Bug #18539)
+        Consolidated Show and Hide actions under one menu called 
+        View->Show/Hide. Changed Find menu to Search.
 
-        #83788 (Bug #18249) *
-            P4Merge now displays the correct version message for the 
-            command line on Unix platforms.
+    #83788 (Bug #18249)
+        P4Merge now displays the correct version message for the 
+        command line on Unix platforms.
 
-        #82543 (Bug #17785) *
-            P4Merge error message labels now match the file labels in the
-            "Choose Files" dialog.
+    #82543 (Bug #17785)
+        P4Merge error message labels now match the file labels in the
+        "Choose Files" dialog.
 
-        #80986 (Bug #17558) *
-            CTRL+2 no longer adds a 2 to your code if there is no difference
-            to scroll to.
+    #80986 (Bug #17558)
+        CTRL+2 no longer adds a 2 to your code if there is no difference
+        to scroll to.
 
-        #78256 (Bug #17270, #17271) *
-            Large files now handled correctly.
+    #78256 (Bug #17270, #17271)
+        Large files now handled correctly.
 
-        #77177 (Bug #17090) *
-            P4Merge now breaks up the undo history of edits after the file 
-            is saved.
+    #77177 (Bug #17090)
+        P4Merge now breaks up the undo history of edits after the file 
+        is saved.
 
-        #77174, #79009, #79108, #78977 (Bug #17131, #17430, #17431)
-            Fixed miscellaneous drawing problems such as displaying correct 
-            colors, refresh highlighting and horizontal scrolling.
+    #77174, #79009, #79108, #78977 (Bug #17131, #17430, #17431)
+        Fixed miscellaneous drawing problems such as displaying correct 
+        colors, refresh highlighting and horizontal scrolling.
+
 
 ---------------------------------------------------------------------------
-
 New features in 2005.1
 
-        #70411 (Bug #15149) *
-            P4Merge can now be used from P4Win, making it a viable alternative
-            to P4WinMerge and P4Diff.
+    #70411 (Bug #15149)
+        P4Merge can now be used from P4Win, making it a viable alternative
+        to P4WinMerge and P4Diff.
 
-        #69096 (Bug #7888) *
-            P4Merge now runs as a standalone merge tool. P4Merge now accepts
-            command-line parameters and can be used from non-Perforce
-            applications.
+    #69096 (Bug #7888)
+        P4Merge now runs as a standalone merge tool. P4Merge now accepts
+        command-line parameters and can be used from non-Perforce
+        applications.
 
-        #38483 (Bug #8636) *
-            Users can now use keyboard commands to move to the next or previous
-            conflict/diff.
+    #38483 (Bug #8636)
+        Users can now use keyboard commands to move to the next or previous
+        conflict/diff.
 
-        P4Merge now has a Preferences dialog, which includes the following:
-        
-        #74744 (Bug #16550) *
-            Character encoding preference in P4Merge allows user to select
-            character encoding set to use with selected file.
+    P4Merge now has a Preferences dialog, which includes the following:
+    
+    #74744 (Bug #16550)
+        Character encoding preference in P4Merge allows user to select
+        character encoding set to use with selected file.
 
-        #74367 (Bug #16401) *
-            Line ending preference for merge files allows users to select
-            different line ending options when merging files using P4Merge:
-            Windows (CRLF), Mac (CR), or Linux (LF).
+    #74367 (Bug #16401)
+        Line ending preference for merge files allows users to select
+        different line ending options when merging files using P4Merge:
+        Windows (CRLF), Mac (CR), or Linux (LF).
 
-        #69998 (Bug #16520) *
-            Font preference. Users can now change font style and size used by
-            P4Merge.
+    #69998 (Bug #16520)
+        Font preference. Users can now change font style and size used by
+        P4Merge.
 
-        #69971 (Bug #14930) *
-            Tab spacing and whitespace preferences. Allows users to select the
-            desired comparison method: recognizing or ignoring line endings
-            and/or white space differences.
+    #69971 (Bug #14930)
+        Tab spacing and whitespace preferences. Allows users to select the
+        desired comparison method: recognizing or ignoring line endings
+        and/or white space differences.
+
 
 ---------------------------------------------------------------------------
-
 Bugs fixed in 2005.1
 
-        #84188 (Bug #18504)
-            Fixed bug where clicking the edit buttons could case memory
-            instability.
+    #84188 (Bug #18504)
+        Fixed bug where clicking the edit buttons could case memory
+        instability.
 
-        #78985 (Bug #17262) *
-            The P4Merge window position and size is now saved.
+    #78985 (Bug #17262)
+        The P4Merge window position and size is now saved.
 
-        #78256 (Bug #17270, #17271) *
-            A dialog has been added to alert the user of file size limitations
-            when diffing or merging large files.
+    #78256 (Bug #17270, #17271)
+        A dialog has been added to alert the user of file size limitations
+        when diffing or merging large files.
 
-        #78092 (Bug #17261) *
-            Giving a directory instead of a file path in the "Choose Files"
-            dialog no longer crashes P4Merge.
+    #78092 (Bug #17261)
+        Giving a directory instead of a file path in the "Choose Files"
+        dialog no longer crashes P4Merge.
 
-        #77175 (Bug #17066) *
-            The command line help output has been corrected.
+    #77175 (Bug #17066)
+        The command line help output has been corrected.
 
-        #74744 (Bug #10989) *
-            Can now diff workspace vs. head in P4Merge when file contains
-            bullet (Option-8) characters on Mac OS X.
+    #74744 (Bug #10989)
+        Can now diff workspace vs. head in P4Merge when file contains
+        bullet (Option-8) characters on Mac OS X.
 
-        #70085 (Bug #10777) *
-            P4Merge now handles files up to 100,000 lines.
+    #70085 (Bug #10777)
+        P4Merge now handles files up to 100,000 lines.
