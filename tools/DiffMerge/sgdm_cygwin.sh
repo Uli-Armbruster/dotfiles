@@ -40,7 +40,7 @@
 ##       used.  If you are using the .ZIP package, update this
 ##       accordingly.
 
-DIFFMERGE_PATH="sgdm.exe";
+DIFFMERGE_PATH="C:/Program Files/SourceGear/Common/DiffMerge/sgdm.exe";
 
 shopt -s nocasematch
 
