@@ -6,7 +6,7 @@
   
     <dependentAssembly>
    
-      <assemblyIdentity version="1.0.0.0" processorArchitecture="x86" type="win32" name="bin" />
+      <assemblyIdentity version="1.0.0.0" processorArchitecture="ia64" type="win32" name="bin" />
   
     </dependentAssembly>
  
