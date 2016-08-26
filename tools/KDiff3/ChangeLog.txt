@@ -1,3 +1,25 @@
+Version 0.9.98 - 2014-07-04
+===========================
+- Text rendering now with QTextLayout fixes the following issues
+  - Correct handling for variable width fonts.
+  - Corrected display of highlighted text with Qt4.8.x on Ubuntu and Mac.
+  - Improved handling of texts with both right to left and left to right languages (mixed Arabic and western texts).
+  - Improved handling of Chinese and Japanese.
+  - Whitespace characters are now shown as dots for spaces and arrows for tabs, and not only in differences.
+  - Fixed symlink comparison (Qt4 symLinkTarget returns absolute paths) 
+- Text analysis for rendering with QTextLayout is interruptable and multithreaded.
+  (See progressbar and abort-button in statusbar)
+- Fix for saving to relative path in KDE-environments. (Patch from Harald Sitter)
+- Fixed bug in 0.9.97: Directory compare was always case sensitive.
+- Fix for saving files on KDE with relative path specified via command line option -o.
+- Fixed problem with KIO (nonlocal urls).
+- Improved Mac support.
+- Write --confighelp information to stdout instead of stderr.
+- Directory Merge Window: Enabled state of "Delete A And B" now also depends on existence of source file A.
+- Works now with Qt4 and Qt5
+- Progress dialog during printing.
+- Workaround for bug in QSplitter::childEvent that broke QFileDialog::getSaveFileName
+
 Version 0.9.97 - 2012-08-10
 ===========================
 - Memory usage optimized for comparison of large directories. (ca. 1/5 needed)

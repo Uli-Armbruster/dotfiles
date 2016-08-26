@@ -2,8 +2,8 @@ KDiff3-Readme for Windows
 =========================
 
 Author: Joachim Eibl  (joachim.eibl@gmx.de)
-Copyright: (C) 2002-2012 by Joachim Eibl
-KDiff3-Version: 0.9.97
+Copyright: (C) 2002-2014 by Joachim Eibl
+KDiff3-Version: 0.9.98
 Homepage: http://kdiff3.sourceforge.net
 
 KDiff3 is a program that
@@ -87,6 +87,8 @@ specific problems I don't know of yet. Please write me about problems you encoun
 Known bugs:
 - Links are not handled correctly. (This is because links in Windows are not
   the same as under Un*x-filesystems.)
+- Comparing very big files causes KDiff3 to crash. Even if your machine has enough 
+  memory, the internal structures can only handle up to 2 GB in text comparison mode.
 
 Licence:
     GNU GENERAL PUBLIC LICENSE, Version 2, June 1991
