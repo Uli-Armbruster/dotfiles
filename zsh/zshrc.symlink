@@ -24,3 +24,4 @@ zplug load --verbose
 undefine-startup-functions
 
 # vim:set filetype=sh:
+cd /d/dev
