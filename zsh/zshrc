@@ -26,4 +26,6 @@ zplug load ${ZSH_VERBOSE/true/--verbose}
 # Clean up after ourselves.
 undefine-startup-functions
 
+cd /c/dev
+
 # vim:set filetype=sh:
