@@ -1,9 +1,12 @@
 [user]
-	email = agross@therightstuff.de
-	name = Alexander Groß
+	name = Uli Armbruster
+	email = uli.armbruster@heco.de
 [core]
 	whitespace = trailing-space, space-before-tab, -indent-with-non-tab, cr-at-eol
 	quotepath = false
+	autocrlf = false
+	safecrlf = false
+	fileMode = false
 [apply]
 	whitespace = nowarn
 [include]
@@ -13,6 +16,21 @@
 	path = ~/.git-config/credential-helper.config
 	path = ~/.git-config/gitignore.config
 	path = ~/.git-config/ruby-aliases.config
+[alias]
+	aac = !sh -c 'git add --all && git commit -m \"$1\"' -
+	aacp = !sh -c 'git add --all && git commit -m \"$1\" && git push' -
+	aucp = !sh -c 'git add --update && git commit -m \"$1\" && git push' -
+	ff = merge --no-ff
+	ga = log --graph --oneline --decorate --all
+	gb = log --graph --all --decorate --branches -30
+	k = !gitk --all & --all &
+	l = log --oneline -35
+	ll = log -10 --pretty=format:\"%h | %an | %ar | %s\"
+	mebranch = !sh -c 'git checkout develop && git pull --ff-only && git checkout \"$1\" && git pull --ff-only && git merge --ff-only develop' -
+	medev = !sh -c 'git fetch && git merge origin/develop' -
+	p = pull
+	pac = !sh -c 'git push --set-upstream origin \"${1-HEAD}\"' -
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [color]
 	ui = auto
 	wtf = true
@@ -66,12 +84,6 @@
 [push]
 	default = simple
 	followTags = true
-[sendemail]
-	from = Alexander Groß <agross@therightstuff.de>
-	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = agross@therightstuff.de
-	smtpserverport = 587
 [status]
 	#submodulesummary = true
 [rebase]
