@@ -16,3 +16,6 @@
 *.exe binary
 *.pdf binary
 *.pyd binary
+*.png binary
+*.jpg binary
+*.dat binary
