@@ -1,24 +1,52 @@
 [user]
-	email = agross@therightstuff.de
-	name = Alexander Groß
+	name = Uli Armbruster
+	email = uli.armbruster@heco.de
 [core]
 	whitespace = trailing-space, space-before-tab, -indent-with-non-tab, cr-at-eol
 	quotepath = false
+	autocrlf = false
+	safecrlf = false
+	fileMode = false
+	editor = /C/Portable/Apps/PortableApps/Notepad++Portable/App/Notepad++/notepad++.exe -multiInst -nosession \"$(cygpath --windows --absolute \"$1\")\"
 [apply]
 	whitespace = nowarn
 [alias]
 	some = !git-some.sh
 	flow = !$ZPLUG_HOME/repos/nvie/gitflow/git-flow
 	standup = !git-standup
-	ui = !/c/Tools/QGit/qgit.exe --all &
-	clobber = !~/.dotfiles/git/bin/git-cleanup
-
+	ui = !"$(cygpath -u "$dev")/env/dotfiles/tools/QGit/qgit.exe" --all &
+	clobber = !"$(cygpath -u "$dev")/env/dotfiles/git/bin/git-cleanup"
+	
 	wtf = !ruby \"$(cygpath --windows --absolute ~/.dotfiles/git/bin/git-wtf.rb)\" --all --relations
 	rank = !ruby \"$(cygpath --windows --absolute ~/.dotfiles/git/bin/git-rank-contributors.rb)\" $*
 	publish = !ruby \"$(cygpath --windows --absolute ~/.dotfiles/git/bin/git-publish-branch.rb)\" $*
 	biggest-commits = !ruby \"$(cygpath --windows --absolute ~/.dotfiles/git/bin/git-biggest-commits.rb)\" $*
 	personal = !ruby \"$(cygpath --windows --absolute ~/.dotfiles/git/bin/git-personal-build.rb)\" agross $*
 	make-this-the-new = "!_() { [ -z \"$1\" ] && >&2 echo Need branch to merge into && exit 1; MERGE_INTO=$1; CURRENT_BRANCH=$(git symbolic-ref --short HEAD) && git checkout $MERGE_INTO && git commit-tree $CURRENT_BRANCH^{tree} -p $MERGE_INTO -p $CURRENT_BRANCH -m \"Merge $CURRENT_BRANCH into $MERGE_INTO\" | xargs --max-args=1 git reset --hard; }; _ $1"
+	
+	aa = add --all
+	aaa = !git add --all && git commit --amend --no-edit
+	aac = !sh -c 'git add --all && git commit -m \"$1\"' -
+	aacp = !sh -c 'git add --all && git commit -m \"$1\" && git push' -
+	amend = commit --amend --reuse-message=HEAD
+	au = add --update
+	aua = !git add --update && git commit --amend --no-edit
+	aucp = !sh -c 'git add --update && git commit -m \"$1\" && git push' -
+	co = checkout
+	ff = merge --no-ff
+	ga = log --graph --oneline --decorate --all
+	gb = log --graph --all --decorate --branches -30
+	k = !gitk --all & --all &
+	l = log --oneline -35
+	ll = log -10 --pretty=format:\"%h | %an | %ar | %s\"
+	mebranch = !sh -c 'git checkout develop && git pull --ff-only && git checkout \"$1\" && git pull --ff-only && git merge --ff-only develop' -
+	medev = !sh -c 'git fetch && git merge origin/develop' -
+	p = pull
+	pac = !sh -c 'git push --set-upstream origin \"${1-HEAD}\"' -
+	review = log -1 --patch
+	s = status
+	unstage = reset head
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
 [color]
 	ui = auto
 	wtf = true
@@ -52,14 +80,21 @@
 [mergetool]
 	prompt = false
 	keepBackup = false
-[mergetool "diffmerge"]
-	cmd = ~/.dotfiles/git/tools/diffmerge-merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "DiffMerge"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/diffmerge-merge.sh" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 	trustExitCode = true
 [mergetool "bc"]
 	cmd = ~/.dotfiles/git/tools/beyondcompare-merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 	trustExitCode = true
+[mergetool "P4"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/p4merge-merge.sh" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+	trustExitCode = false
+[mergetool "KDiff3"]
+	 cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/kdiff3-merge.sh" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
+[mergetool "BeyondCompare"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/beyondcompare-merge.sh" \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
 [diff]
-	tool = diffmerge
+	tool = BeyondCompare
 	renames = copies
 	submodule = log
 	compactionHeuristic = true
@@ -71,6 +106,12 @@
 	cmd = ~/.dotfiles/git/tools/meld-diff \"$LOCAL\" \"$REMOTE\"
 [difftool "bc"]
 	cmd = ~/.dotfiles/git/tools/beyondcompare-diff \"$LOCAL\" \"$REMOTE\"
+[difftool "DiffMerge"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/diffmerge-diff.sh" \"$LOCAL\" \"$REMOTE\"
+[difftool "P4"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/p4merge-diff.sh" \"$LOCAL\" \"$REMOTE\"
+[difftool "BeyondCompare"]
+	cmd = "$(cygpath -u "$dev")/env/dotfiles/git/tools/beyondcompare-diff.sh" \"$LOCAL\" \"$REMOTE\"
 [clean]
 	requireForce = false
 [rerere]
@@ -79,22 +120,12 @@
 [push]
 	default = simple
 	followTags = true
-[sendemail]
-	from = Alexander Groß <agross@therightstuff.de>
-	smtpencryption = tls
-	smtpserver = smtp.gmail.com
-	smtpuser = agross@therightstuff.de
-	smtpserverport = 587
 [status]
 	#submodulesummary = true
 [rebase]
 	autoSquash = true
 [stash]
 	showPatch = true
-[pager]
-	log = diff-so-fancy | less
-	show = diff-so-fancy | less --pattern='^(added|deleted|modified): |'
-	diff = diff-so-fancy | less --pattern='^(added|deleted|modified): |'
 [interactive]
 	diffFilter = diff-so-fancy
 [color "diff-highlight"]
@@ -102,3 +133,6 @@
 	oldhighlight = red bold
 	newnormal = green
 	newhighlight = bold green
+[gui]
+	fontui = -family \"Segoe UI\" -size 8 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family Consolas -size 9 -weight normal -slant roman -underline 0 -overstrike 0
