@@ -536,6 +536,9 @@ II.2.12 &lt;HandlesEvent /&gt;&#xD;
 	
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Description/@EntryValue">MSpec context</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/CustomProperties/=minimumLanguageVersion/@EntryIndexedValue">2.0</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Scope/=B68999B9D6B43E47A02B22C12A54C3CC/Type/@EntryValue">InCSharpTypeMember</s:String>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Shortcut/@EntryValue">spec</s:String>
 	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
 	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=40992544FE6B0F43BA8FDF44D695399F/Text/@EntryValue">[Subject(typeof($Type$))]&#xD;
