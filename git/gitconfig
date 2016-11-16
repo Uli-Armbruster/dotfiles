@@ -24,8 +24,8 @@
 	ga = log --graph --oneline --decorate --all
 	gb = log --graph --all --decorate --branches -30
 	k = !gitk --all & --all &
-	l = log --oneline -35
-	ll = log -10 --pretty=format:\"%h | %an | %ar | %s\"
+	l = log -10 --pretty=format:\"%h | %an | %ar | %s\"
+	ll = !sh -c 'git log -\"$1\" --pretty=format:\"%h | %an | %ar | %s\"' -
 	mebranch = !sh -c 'git checkout develop && git pull --ff-only && git checkout \"$1\" && git pull --ff-only && git merge --ff-only develop' -
 	medev = !sh -c 'git fetch && git merge origin/develop' -
 	p = pull
