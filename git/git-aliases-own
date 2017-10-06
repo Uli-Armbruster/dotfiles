@@ -1,0 +1,17 @@
+[alias]
+	aac = !sh -c 'git add --all && git commit -m \"$1\"' -
+	aacp = !sh -c 'git add --all && git commit -m \"$1\" && git push' -
+	aucp = !sh -c 'git add --update && git commit -m \"$1\" && git push' -
+	ff = merge --no-ff
+	ga = log --graph --oneline --decorate --all
+	gb = log --graph --all --decorate --branches -30
+	k = !gitk --all & --all &
+	l = log -10 --pretty=format:\"%h | %an | %ar | %s\"
+	ll = !sh -c 'git log -\"$1\" --pretty=format:\"%h | %an | %ar | %s\"' -
+	mebranch = !sh -c 'git checkout develop && git pull --ff-only && git checkout \"$1\" && git pull --ff-only && git merge --ff-only develop' -
+	medev = !sh -c 'git fetch && git merge origin/develop' -
+	p = pull
+	pac = !sh -c 'git push --set-upstream origin \"${1-HEAD}\"' -
+	ignore = "!gi() { curl -L -s https://www.gitignore.io/api/$@ ;}; gi"
+	rpo = remote prune origin
+	aliases = config --get-regexp ^alias\\.
